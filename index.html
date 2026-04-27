@@ -22,13 +22,15 @@ img{max-width:100%}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;height:68px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--slate-200);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px}
-.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;color:var(--slate-900)}
-.nav-logo span{color:var(--sky)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{height:36px;width:auto}
+.nav-logo-text{font-weight:700;font-size:20px;color:var(--slate-900);letter-spacing:0.02em}
+.nav-logo-text span{color:var(--sky)}
 .nav-links{display:flex;gap:32px}
 .nav-links a{font-size:13px;font-weight:500;color:var(--slate-500);letter-spacing:0.05em;transition:color 0.2s}
 .nav-links a:hover{color:var(--sky)}
-.nav-cta{background:var(--sky);color:white;padding:8px 20px;font-size:13px;font-weight:500;transition:background 0.2s}
-.nav-cta:hover{background:var(--sky-dark);color:white}
+.nav-cta{background:var(--sky);color:white!important;padding:8px 20px;font-size:13px;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--sky-dark)!important}
 
 /* SECTIONS */
 section{padding:100px 48px}
@@ -41,12 +43,15 @@ p{color:var(--slate-500);font-weight:300;line-height:1.8}
 
 /* HERO */
 #home{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#F0F9FF 0%,#FFFFFF 50%,#F8FAFC 100%);padding-top:68px}
-.hero-inner{max-width:1200px;margin:0 auto;padding:0 48px}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--sky-light);color:var(--sky-dark);padding:6px 16px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;flex-direction:column;align-items:flex-start}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--sky-light);color:var(--sky-dark);padding:6px 16px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:40px}
 .hero-tag::before{content:'';width:6px;height:6px;background:var(--sky);border-radius:50%}
-.hero-h1{font-size:clamp(48px,7vw,80px);font-weight:700;line-height:1.05;margin-bottom:24px}
-.hero-h1 span{color:var(--sky)}
-.hero-sub{font-size:18px;color:var(--slate-500);font-weight:300;max-width:560px;line-height:1.8;margin-bottom:48px}
+.hero-logo-block{margin-bottom:40px}
+.hero-logo-block img{height:72px;width:auto}
+.hero-logo-fallback{font-size:clamp(48px,7vw,80px);font-weight:700;line-height:1;letter-spacing:-0.02em;color:var(--slate-900)}
+.hero-logo-fallback span{color:var(--sky)}
+.hero-tagline{font-size:20px;color:var(--slate-500);font-weight:300;font-style:italic;margin-bottom:16px;letter-spacing:0.02em}
+.hero-sub{font-size:17px;color:var(--slate-500);font-weight:300;max-width:520px;line-height:1.8;margin-bottom:48px}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--sky);color:white;padding:14px 32px;font-size:14px;font-weight:600;letter-spacing:0.05em;transition:background 0.2s;margin-right:16px}
 .btn-primary:hover{background:var(--sky-dark)}
 .btn-secondary{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--slate-200);color:var(--slate-700);padding:14px 32px;font-size:14px;font-weight:600;transition:all 0.2s}
@@ -54,7 +59,7 @@ p{color:var(--slate-500);font-weight:300;line-height:1.8}
 
 /* STATS */
 #stats{background:var(--slate-900);padding:72px 48px}
-.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);divide-x:1px solid rgba(255,255,255,0.1)}
+.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
 .stat{padding:32px 40px;border-left:1px solid rgba(255,255,255,0.08);text-align:center}
 .stat:first-child{border-left:none}
 .stat-num{font-size:48px;font-weight:700;color:white;line-height:1}
@@ -72,22 +77,23 @@ p{color:var(--slate-500);font-weight:300;line-height:1.8}
 
 /* VEHICLE */
 #vehicle{background:var(--slate-50)}
-.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:64px;align-items:start}
-.spec-row{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--slate-200)}
-.spec-name{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate-400)}
-.spec-val{font-size:16px;font-weight:600;color:var(--slate-900);text-align:right}
-.specs-text p{font-size:15px;line-height:1.9;margin-bottom:20px}
+.vehicle-cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:64px;align-items:start}
+.vehicle-text p{font-size:15px;line-height:1.9;margin-bottom:20px}
+.vehicle-note{margin-top:32px;padding:20px 24px;border-left:3px solid var(--sky);background:var(--sky-light)}
+.vehicle-note p{font-size:13px;color:var(--sky-dark);font-weight:500}
 
 /* ABOUT */
 #about{background:var(--white)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:64px}
 .about-text p{font-size:16px;line-height:1.9;margin-bottom:24px}
 .founder-card{position:relative}
-.founder-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
+.founder-img-wrap{position:relative;overflow:hidden}
+.founder-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block}
+.founder-img-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--sky-light),var(--slate-100));display:flex;align-items:center;justify-content:center}
 .founder-info{background:var(--sky);padding:24px 28px}
-.founder-name{font-size:16px;font-weight:700;color:white}
-.founder-role{font-size:12px;color:rgba(255,255,255,0.8);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
-.linkedin-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;color:white;font-size:13px;font-weight:500;opacity:0.8;transition:opacity 0.2s}
+.founder-name{font-size:15px;font-weight:700;color:white}
+.founder-role{font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px}
+.linkedin-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;color:white;font-size:13px;font-weight:500;opacity:0.85;transition:opacity 0.2s}
 .linkedin-link:hover{opacity:1}
 
 /* BLOG */
@@ -96,7 +102,7 @@ p{color:var(--slate-500);font-weight:300;line-height:1.8}
 .blog-card{background:white;border:1px solid var(--slate-200);padding:32px;cursor:pointer;transition:border-color 0.2s,transform 0.2s}
 .blog-card:hover{border-color:var(--sky);transform:translateY(-2px)}
 .blog-cat{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
-.blog-card h3{font-size:16px;line-height:1.5;margin-bottom:12px;color:var(--slate-900)}
+.blog-card h3{font-size:15px;line-height:1.5;margin-bottom:12px;color:var(--slate-900)}
 .blog-card p{font-size:13px;line-height:1.7;color:var(--slate-500)}
 .blog-meta{display:flex;align-items:center;gap:8px;margin-top:20px;font-size:12px;color:var(--slate-400)}
 
@@ -107,7 +113,7 @@ p{color:var(--slate-500);font-weight:300;line-height:1.8}
 .modal-close{position:absolute;top:20px;right:24px;font-size:24px;cursor:pointer;color:var(--slate-400);background:none;border:none;line-height:1}
 .modal-close:hover{color:var(--slate-900)}
 .modal-cat{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--sky);margin-bottom:16px}
-.modal h2{font-size:28px;font-weight:700;line-height:1.3;margin-bottom:24px;color:var(--slate-900)}
+.modal h2{font-size:26px;font-weight:700;line-height:1.3;margin-bottom:24px;color:var(--slate-900)}
 .modal-meta{font-size:13px;color:var(--slate-400);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--slate-200)}
 .modal-body{font-size:16px;line-height:1.9;color:var(--slate-700)}
 .modal-body p{margin-bottom:20px}
@@ -118,40 +124,46 @@ p{color:var(--slate-500);font-weight:300;line-height:1.8}
 .modal-body th{background:var(--slate-50);padding:10px 16px;font-size:13px;font-weight:600;text-align:left;border:1px solid var(--slate-200)}
 .modal-body td{padding:10px 16px;font-size:14px;border:1px solid var(--slate-200)}
 
-/* CAREERS */
+/* CAREERS COMING SOON */
 #careers{background:var(--white)}
-.roles{margin-top:48px;display:flex;flex-direction:column;gap:16px}
-.role-card{border:1px solid var(--slate-200);padding:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:border-color 0.2s}
-.role-card:hover{border-color:var(--sky)}
-.role-title{font-size:18px;font-weight:600;color:var(--slate-900);margin-bottom:6px}
-.role-type{font-size:12px;color:var(--sky);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
-.role-desc{font-size:14px;color:var(--slate-500);max-width:600px}
-.role-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.tag{font-size:11px;padding:4px 10px;background:var(--slate-100);color:var(--slate-500);font-weight:500}
+.careers-coming{display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px 40px;border:1px solid var(--slate-200);margin-top:48px;max-width:640px;margin-left:auto;margin-right:auto}
+.careers-coming .big-label{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--sky);margin-bottom:24px}
+.careers-coming h3{font-size:32px;font-weight:700;color:var(--slate-900);margin-bottom:16px}
+.careers-coming p{font-size:16px;color:var(--slate-500);font-weight:300;line-height:1.8;max-width:480px;margin-bottom:32px}
+.careers-notify{display:flex;gap:0;width:100%;max-width:400px}
+.careers-notify input{flex:1;border:2px solid var(--slate-200);border-right:none;padding:12px 16px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s}
+.careers-notify input:focus{border-color:var(--sky)}
+.careers-notify button{background:var(--sky);color:white;border:none;padding:12px 24px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif;transition:background 0.2s}
+.careers-notify button:hover{background:var(--sky-dark)}
 
 /* CONTACT */
 #contact{background:var(--slate-50)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:64px}
-.contact-info h3{font-size:24px;font-weight:700;margin-bottom:24px}
-.contact-detail{margin-bottom:24px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;margin-top:64px}
+.contact-left h3{font-size:28px;font-weight:700;margin-bottom:16px}
+.contact-left p{font-size:16px;color:var(--slate-500);font-weight:300;line-height:1.8;margin-bottom:40px}
+.contact-detail{margin-bottom:28px}
 .contact-detail-label{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate-400);margin-bottom:6px}
 .contact-detail-val{font-size:15px;font-weight:500;color:var(--slate-900)}
 .contact-detail-val a{color:var(--sky);transition:color 0.2s}
 .contact-detail-val a:hover{color:var(--sky-dark)}
-.form-field{width:100%;border:none;border-bottom:2px solid var(--slate-200);padding:14px 0;font-size:15px;font-family:'Inter',sans-serif;font-weight:300;color:var(--slate-900);background:transparent;outline:none;transition:border-color 0.2s;margin-bottom:28px;display:block}
+.form-group{margin-bottom:28px}
+.form-label{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--slate-400);margin-bottom:8px;display:block}
+.form-field{width:100%;border:none;border-bottom:2px solid var(--slate-200);padding:12px 0;font-size:15px;font-family:'Inter',sans-serif;font-weight:300;color:var(--slate-900);background:transparent;outline:none;transition:border-color 0.2s;display:block}
 .form-field::placeholder{color:var(--slate-300)}
 .form-field:focus{border-bottom-color:var(--sky)}
-.form-select{appearance:none}
+.form-select{appearance:none;cursor:pointer}
 textarea.form-field{resize:none}
-.btn-submit{width:100%;background:var(--sky);color:white;border:none;padding:16px;font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;font-family:'Inter',sans-serif}
+.btn-submit{width:100%;background:var(--sky);color:white;border:none;padding:16px;font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;font-family:'Inter',sans-serif;margin-top:8px}
 .btn-submit:hover{background:var(--sky-dark)}
 
 /* FOOTER */
 footer{background:var(--slate-900);padding:64px 48px 40px}
 .footer-inner{max-width:1200px;margin:0 auto}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:64px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08)}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,0.4);margin-top:16px;line-height:1.8}
-.footer-col-title{font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:20px}
+.footer-brand-name{font-size:22px;font-weight:700;color:white;letter-spacing:0.02em;margin-bottom:16px}
+.footer-brand-name span{color:var(--sky)}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.8}
+.footer-col-title{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px}
 .footer-links{display:flex;flex-direction:column;gap:12px}
 .footer-links a{font-size:14px;color:rgba(255,255,255,0.6);transition:color 0.2s}
 .footer-links a:hover{color:white}
@@ -166,11 +178,12 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
   #home,.hero-inner{padding-left:20px;padding-right:20px}
   .stats-grid{grid-template-columns:1fr 1fr}
   .stat{border-left:none;border-top:1px solid rgba(255,255,255,0.08);padding:24px 20px}
-  .tech-grid,.about-grid,.specs-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .tech-grid,.about-grid,.vehicle-cols,.contact-grid,.footer-grid{grid-template-columns:1fr}
   .blog-grid{grid-template-columns:1fr}
-  .role-card{flex-direction:column;align-items:flex-start}
   .modal{padding:32px 24px}
   footer{padding:48px 20px 32px}
+  .careers-notify{flex-direction:column}
+  .careers-notify input{border-right:2px solid var(--slate-200);border-bottom:none}
 }
 </style>
 </head>
@@ -178,7 +191,10 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Hy<span>SPERA</span></div>
+  <div class="nav-logo">
+    <img src="logo.png" alt="HySPERA" onerror="this.style.display='none';document.getElementById('navLogoText').style.display='block'">
+    <div class="nav-logo-text" id="navLogoText" style="display:none">Hy<span>SPERA</span></div>
+  </div>
   <div class="nav-links">
     <a href="#technology">Technology</a>
     <a href="#vehicle">Vehicle</a>
@@ -193,10 +209,14 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 <section id="home">
   <div class="hero-inner">
     <div class="hero-tag">Hydrogen Fuel Cell Electric Vehicle</div>
-    <h1 class="hero-h1">Driven by Hydrogen.<br><span>Defined by Innovation.</span></h1>
+    <div class="hero-logo-block">
+      <img src="logo.png" alt="HySPERA" style="height:80px;width:auto" onerror="this.style.display='none';document.getElementById('heroLogoFallback').style.display='block'">
+      <div class="hero-logo-fallback" id="heroLogoFallback" style="display:none">Hy<span>SPERA</span></div>
+    </div>
+    <p class="hero-tagline">Driven by Hydrogen. Defined by Innovation.</p>
     <p class="hero-sub">India's first premium hydrogen fuel cell passenger car. Built for long-distance mobility without compromise.</p>
     <div>
-      <a href="#vehicle" class="btn-primary">Explore the Vehicle →</a>
+      <a href="#vehicle" class="btn-primary">Explore the Vehicle</a>
       <a href="#technology" class="btn-secondary">Our Technology</a>
     </div>
   </div>
@@ -206,24 +226,24 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 <section id="stats">
   <div class="stats-grid">
     <div class="stat">
-      <div class="stat-num">650</div>
+      <div class="stat-num">600+</div>
       <div class="stat-unit">km</div>
-      <div class="stat-label">Range</div>
+      <div class="stat-label">Target Range</div>
     </div>
     <div class="stat">
-      <div class="stat-num">7.5</div>
-      <div class="stat-unit">kg H₂</div>
-      <div class="stat-label">Onboard Storage</div>
+      <div class="stat-num">700</div>
+      <div class="stat-unit">bar</div>
+      <div class="stat-label">Storage Pressure</div>
     </div>
     <div class="stat">
-      <div class="stat-num">3–5</div>
+      <div class="stat-num">3 to 5</div>
       <div class="stat-unit">min</div>
       <div class="stat-label">Refuel Time</div>
     </div>
     <div class="stat">
-      <div class="stat-num">110</div>
-      <div class="stat-unit">kW</div>
-      <div class="stat-label">Fuel Cell Output</div>
+      <div class="stat-num">Zero</div>
+      <div class="stat-unit">CO2</div>
+      <div class="stat-label">Tailpipe Emissions</div>
     </div>
   </div>
 </section>
@@ -237,17 +257,17 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
       <div class="tech-card">
         <div class="tech-num">01</div>
         <h3>Type IV COPV Hydrogen Tank</h3>
-        <p>700 bar rated. Carbon fibre overwound over a high-density polymer liner. Up to 70% lighter than metal tanks. Simulation-validated structural integrity under cyclic fill and thermal variation.</p>
+        <p>High pressure storage at 700 bar. Carbon fibre overwound over a polymer liner. Significantly lighter than metal alternatives. Validated for structural integrity under cyclic fill and thermal variation.</p>
       </div>
       <div class="tech-card">
         <div class="tech-num">02</div>
         <h3>PEM Fuel Cell Powertrain</h3>
-        <p>Proton exchange membrane. 110 kW continuous output. 50–60% efficiency — significantly higher than any combustion engine. Near-silent operation. Zero tailpipe emissions — water vapour only.</p>
+        <p>Proton exchange membrane technology. High continuous power output. Efficiency well above internal combustion engines. Near-silent operation. The only output is water vapour.</p>
       </div>
       <div class="tech-card">
         <div class="tech-num">03</div>
         <h3>Intelligent Energy Management</h3>
-        <p>Real-time power split between fuel cell and 2.3 kWh buffer battery. SOC maintained between 20–80%. Optimised for Indian drive cycles and long-distance highway demands.</p>
+        <p>Real-time power split between the fuel cell and a buffer battery. State of charge kept within an optimal window. Built around Indian drive cycles and long-distance highway conditions.</p>
       </div>
     </div>
   </div>
@@ -256,26 +276,25 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 <!-- VEHICLE -->
 <section id="vehicle">
   <div class="inner">
-    <div class="label">Powertrain & Performance</div>
+    <div class="label">Powertrain and Performance</div>
     <h2>Engineered Without Compromise.</h2>
-    <div class="specs-grid">
-      <div>
-        <div class="spec-row"><span class="spec-name">Fuel Cell Output</span><span class="spec-val">110 kW cont / 130 kW peak</span></div>
-        <div class="spec-row"><span class="spec-name">Hydrogen Storage</span><span class="spec-val">7.5 kg at 700 bar (Type IV COPV)</span></div>
-        <div class="spec-row"><span class="spec-name">Range</span><span class="spec-val">550 – 650 km</span></div>
-        <div class="spec-row"><span class="spec-name">Drive Motor</span><span class="spec-val">100 kW / 300 Nm (RWD)</span></div>
-        <div class="spec-row"><span class="spec-name">Top Speed</span><span class="spec-val">200 – 220 km/h</span></div>
-        <div class="spec-row"><span class="spec-name">Refuel Time</span><span class="spec-val">3 – 5 minutes</span></div>
-        <div class="spec-row"><span class="spec-name">Buffer Battery</span><span class="spec-val">2.3 kWh Lithium-ion</span></div>
-        <div class="spec-row"><span class="spec-name">Drivetrain</span><span class="spec-val">Rear-Wheel Drive</span></div>
-        <div class="spec-row"><span class="spec-name">Emissions</span><span class="spec-val">Zero CO₂ — water vapour only</span></div>
-        <div class="spec-row"><span class="spec-name">Driving Cycle</span><span class="spec-val">WLTP validated</span></div>
+    <div class="vehicle-cols">
+      <div class="vehicle-text">
+        <p>HySPERA is building a full hydrogen fuel cell passenger car from the ground up. Not a conversion. Not a concept. A purpose-built vehicle designed around the strengths of hydrogen as an energy carrier.</p>
+        <p>The powertrain centres on a PEM fuel cell paired with a lithium-ion buffer battery. The fuel cell handles steady-state demand. The battery covers transient peaks and recovers energy from braking. The two work together through a real-time energy management system.</p>
+        <p>The hydrogen storage system uses a Type IV COPV rated to 700 bar. Rear-wheel drive. A permanent magnet synchronous motor delivers torque directly to the wheels with no gearbox needed.</p>
+        <p>Target range is above 600 km on a single fill. Refuel time is 3 to 5 minutes. Zero tailpipe emissions.</p>
+        <div class="vehicle-note">
+          <p>Full technical specifications will be published at a later stage. HySPERA is currently in the research and simulation phase.</p>
+        </div>
       </div>
-      <div class="specs-text">
-        <p>HySPERA's powertrain centres on a proton exchange membrane fuel cell delivering 110 kW continuous output — paired with a 2.3 kWh lithium-ion buffer battery that handles transient load demands and recuperates braking energy.</p>
-        <p>The hydrogen storage system uses a Type IV carbon fibre overwound pressure vessel, rated to 700 bar and simulation-validated for structural integrity under cyclic fill and thermal variation.</p>
-        <p>A PMSM motor converts the electrical output into 100 kW and 300 Nm of mechanical torque at the rear wheels — with full torque available from zero speed and no gearbox required.</p>
-        <p>Refuelled in 3 to 5 minutes. Range of 550 to 650 km. Near-silent. Zero tailpipe emissions.</p>
+      <div>
+        <div style="background:var(--sky-light);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border:1px solid var(--slate-200)">
+          <div style="text-align:center;padding:40px">
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--sky);margin-bottom:12px">Vehicle Render</div>
+            <div style="font-size:14px;color:var(--slate-400);font-weight:300">Coming soon</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -289,16 +308,29 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
       <div class="about-text">
         <h2>A Founder's Conviction.</h2>
         <br>
-        <p>HySPERA is building India's first premium hydrogen fuel cell passenger car. Founded by a researcher who believes hydrogen is not a distant promise — it is the right answer for long-distance mobility in a country that cannot afford range anxiety or overnight charging.</p>
-        <p>We are not a component company. We are not a concept studio. We are building the full vehicle. From tank to powertrain to cabin.</p>
-        <p>India's geography demands range. India's infrastructure cannot wait for overnight charging networks to cover 3.3 million square kilometres. Hydrogen, with its 3-to-5-minute refuel and 600 km range, is the answer that fits the problem.</p>
+        <p>HySPERA is building India's first premium hydrogen fuel cell passenger car. The company was started by a researcher who believes hydrogen is not a distant promise. It is the right answer for long-distance mobility in a country that cannot afford range anxiety or overnight charging infrastructure.</p>
+        <p>India's geography demands real range. The average intercity distance, the lack of charging density outside major urban centres, and the heat and humidity that degrades battery performance all point to the same conclusion. Hydrogen, with a short refuel time and a long range, fits the problem.</p>
+        <p>HySPERA is not a component supplier. It is not a consultancy. It is building the full vehicle. From tank to powertrain to cabin.</p>
       </div>
       <div class="founder-card">
-        <img src="founder.jpg" alt="Kalluri Devi Narasimha Venu Madhav" class="founder-img" onerror="this.style.background='#E0F2FE';this.style.minHeight='400px'">
+        <img
+          src="founder.jpg"
+          alt="Kalluri Devi Narasimha Venu Madhav, Founder of HySPERA"
+          class="founder-img"
+          onerror="this.style.display='none';document.getElementById('founderPlaceholder').style.display='flex'"
+        >
+        <div id="founderPlaceholder" class="founder-img-placeholder" style="display:none">
+          <div style="text-align:center">
+            <div style="width:80px;height:80px;border-radius:50%;background:var(--sky-light);margin:0 auto 16px;display:flex;align-items:center;justify-content:center">
+              <span style="font-size:28px;font-weight:700;color:var(--sky)">M</span>
+            </div>
+            <div style="font-size:13px;color:var(--slate-400)">Founder photo coming soon</div>
+          </div>
+        </div>
         <div class="founder-info">
           <div class="founder-name">Kalluri Devi Narasimha Venu Madhav</div>
-          <div class="founder-role">Founder & Lead Engineer</div>
-          <a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank" class="linkedin-link">LinkedIn Profile →</a>
+          <div class="founder-role">Founder and Lead Engineer</div>
+          <a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank" rel="noopener" class="linkedin-link">LinkedIn Profile</a>
         </div>
       </div>
     </div>
@@ -310,7 +342,7 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
   <div class="inner">
     <div class="label">Hydrogen Intelligence</div>
     <h2>19 Articles on Hydrogen Mobility.</h2>
-    <p style="margin-top:12px;max-width:600px">Written by Kalluri Devi Narasimha Venu Madhav — covering PEM fuel cells, hydrogen storage, energy management, EU policy, drivetrain engineering, and the road to clean mobility.</p>
+    <p style="margin-top:12px;max-width:560px">Written by Kalluri Devi Narasimha Venu Madhav. Covering PEM fuel cells, hydrogen storage, energy management, EU policy, drivetrain engineering, and the road to clean mobility.</p>
     <div class="blog-grid" id="blogGrid"></div>
   </div>
 </section>
@@ -319,36 +351,16 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 <section id="careers">
   <div class="inner">
     <div class="label">Join HySPERA</div>
-    <h2>Build the Vehicle That Changes Indian Mobility.</h2>
-    <p style="margin-top:12px;max-width:600px">We are a technically driven team with a clear mission. If you want to work on real hydrogen vehicle systems — this is where you belong.</p>
-    <div class="roles">
-      <div class="role-card">
-        <div>
-          <div class="role-title">Powertrain Systems Engineer</div>
-          <div class="role-type">Full-time · Munich / Remote</div>
-          <div class="role-desc">Design and validate fuel cell and battery hybrid powertrain systems. Experience with MATLAB/Simulink and vehicle systems modelling required.</div>
-          <div class="role-tags"><span class="tag">MATLAB</span><span class="tag">Fuel Cells</span><span class="tag">Simulink</span><span class="tag">Powertrain</span></div>
-        </div>
-        <a href="#contact" class="btn-primary" style="white-space:nowrap">Apply →</a>
+    <h2>We Are Just Getting Started.</h2>
+    <div class="careers-coming">
+      <div class="big-label">Careers</div>
+      <h3>Roles opening soon.</h3>
+      <p>HySPERA is in its early stages. We are looking for engineers, researchers, and builders who want to work on a real hydrogen vehicle from the ground up. If that is you, leave your email and we will reach out when positions open.</p>
+      <div class="careers-notify">
+        <input type="email" placeholder="your@email.com" id="careerEmail">
+        <button onclick="notifyCareer()">Notify Me</button>
       </div>
-      <div class="role-card">
-        <div>
-          <div class="role-title">Hydrogen Storage Engineer</div>
-          <div class="role-type">Full-time · Munich / Hyderabad</div>
-          <div class="role-desc">Structural and thermodynamic analysis of Type IV COPV high-pressure hydrogen storage systems. Background in composite materials or pressure vessel design preferred.</div>
-          <div class="role-tags"><span class="tag">COPV</span><span class="tag">700 bar</span><span class="tag">FEA</span><span class="tag">Hydrogen</span></div>
-        </div>
-        <a href="#contact" class="btn-primary" style="white-space:nowrap">Apply →</a>
-      </div>
-      <div class="role-card">
-        <div>
-          <div class="role-title">Thesis / Research Intern — Hydrogen Mobility</div>
-          <div class="role-type">Internship · 4–6 months · Munich or Remote</div>
-          <div class="role-desc">Open to M.Sc. or B.Tech students in Mechanical, Automotive, Energy, or related fields. Research topics in fuel cell simulation, hydrogen storage, and energy management.</div>
-          <div class="role-tags"><span class="tag">M.Sc.</span><span class="tag">B.Tech</span><span class="tag">Thesis</span><span class="tag">Research</span></div>
-        </div>
-        <a href="#contact" class="btn-primary" style="white-space:nowrap">Apply →</a>
-      </div>
+      <div id="careerMsg" style="margin-top:16px;font-size:13px;color:var(--sky);display:none">Got it. We will be in touch.</div>
     </div>
   </div>
 </section>
@@ -356,36 +368,45 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 <!-- CONTACT -->
 <section id="contact">
   <div class="inner">
-    <div class="label">Get in Touch</div>
-    <h2>Let's Talk.</h2>
     <div class="contact-grid">
-      <div class="contact-info">
-        <p style="font-size:16px;margin-bottom:40px">For partnerships, press, and investor enquiries.</p>
-        <div class="contact-detail">
-          <div class="contact-detail-label">Email</div>
-          <div class="contact-detail-val"><a href="mailto:contact@hyspera.com">contact@hyspera.com</a></div>
-        </div>
+      <div class="contact-left">
+        <div class="label">Get in Touch</div>
+        <h3>Let's Talk.</h3>
+        <p>HySPERA is open to conversations with investors, research partners, and press. Use the form and we will get back to you.</p>
         <div class="contact-detail">
           <div class="contact-detail-label">LinkedIn</div>
-          <div class="contact-detail-val"><a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank">Kalluri Devi Narasimha Venu Madhav</a></div>
+          <div class="contact-detail-val">
+            <a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank" rel="noopener">Kalluri Devi Narasimha Venu Madhav</a>
+          </div>
         </div>
         <div class="contact-detail">
-          <div class="contact-detail-label">Locations</div>
-          <div class="contact-detail-val">Munich, Germany<br>Hyderabad, India</div>
+          <div class="contact-detail-label">Based in</div>
+          <div class="contact-detail-val">Munich, Germany and Hyderabad, India</div>
         </div>
       </div>
       <div>
-        <input type="text" class="form-field" placeholder="Your full name">
-        <input type="email" class="form-field" placeholder="your@email.com">
-        <select class="form-field form-select">
-          <option value="">Select enquiry type</option>
-          <option>Investor Enquiry</option>
-          <option>Partnership</option>
-          <option>Press / Media</option>
-          <option>Careers</option>
-          <option>Other</option>
-        </select>
-        <textarea class="form-field" rows="5" placeholder="Tell us about your interest in HySPERA"></textarea>
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-field" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-field" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Enquiry Type</label>
+          <select class="form-field form-select">
+            <option value="">Select one</option>
+            <option>Investor Enquiry</option>
+            <option>Research Partnership</option>
+            <option>Press and Media</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-field" rows="5" placeholder="Tell us about your interest in HySPERA"></textarea>
+        </div>
         <button class="btn-submit">Send Message</button>
       </div>
     </div>
@@ -397,8 +418,8 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div style="font-size:22px;font-weight:700;color:white">Hy<span style="color:var(--sky)">SPERA</span></div>
-        <p>Driven by Hydrogen.<br>Defined by Innovation.<br><br>Munich, Germany · Hyderabad, India</p>
+        <div class="footer-brand-name">Hy<span>SPERA</span></div>
+        <p>Driven by Hydrogen. Defined by Innovation.<br><br>Munich, Germany and Hyderabad, India</p>
       </div>
       <div>
         <div class="footer-col-title">Navigation</div>
@@ -414,13 +435,12 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
       <div>
         <div class="footer-col-title">Connect</div>
         <div class="footer-links">
-          <a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank">LinkedIn</a>
-          <a href="mailto:contact@hyspera.com">contact@hyspera.com</a>
+          <a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 HySPERA. All rights reserved.</p>
+      <p>2025 HySPERA. All rights reserved.</p>
       <p>Driven by Hydrogen. Defined by Innovation.</p>
     </div>
   </div>
@@ -429,7 +449,7 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 <!-- BLOG MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModalBtn()">×</button>
+    <button class="modal-close" onclick="closeModalBtn()">x</button>
     <div class="modal-cat" id="modalCat"></div>
     <h2 id="modalTitle"></h2>
     <div class="modal-meta" id="modalMeta"></div>
@@ -440,52 +460,52 @@ footer{background:var(--slate-900);padding:64px 48px 40px}
 <script>
 const posts = [
   {
-    title: "Why I Study Hydrogen — And Why It Deserves More Attention",
+    title: "Why I Study Hydrogen and Why It Deserves More Attention",
     cat: "Story",
     date: "6 Jan 2025",
     read: "2 min read",
     desc: "1.5 years into an M.Sc. in Hydrogen Technology in Germany, deep into a thesis on fuel cell and battery hybrid vehicles.",
-    body: `<p>1.5 years ago, I moved to Germany to study Hydrogen Technology. I have not shared much about this journey online, as I have focused on my work.</p><p>Now in my 4th semester and deep into my thesis — simulating a fuel cell and battery hybrid vehicle in MATLAB — I believe it is time to start sharing what I have been learning.</p><p>Hydrogen deserves more recognition in the clean mobility conversation. It is not just a fuel — it is an energy carrier. The more I study it, the more I believe it has a significant role in transport that many people may not fully realise.</p><p>This blog is where I share what I learn, one post at a time.</p>`
+    body: `<p>1.5 years ago, I moved to Germany to study Hydrogen Technology. I have not shared much about this journey online, as I focused on the work. Now in my 4th semester and deep into my thesis, simulating a fuel cell and battery hybrid vehicle in MATLAB, I think it is time to start sharing what I have been learning.</p><p>Hydrogen deserves more recognition in the clean mobility conversation. It is not just a fuel. It is an energy carrier. The more I study it, the more I believe it has a significant role in transport that many people have not fully considered.</p><p>This blog is where I share what I learn, one post at a time.</p>`
   },
   {
-    title: "There Are Two Types of Electric Vehicle — And They Work Very Differently",
+    title: "There Are Two Types of Electric Vehicle and They Work Very Differently",
     cat: "Explainer",
     date: "7 Jan 2025",
     read: "3 min read",
     desc: "Most people think there is only one kind of electric vehicle. There are actually two.",
-    body: `<p>Most people think there is only one type of electric vehicle. There are actually two — and they work very differently.</p><p><strong>The first is a Battery EV.</strong> Plug in, charge, drive. Simple.</p><p><strong>The second is a Fuel Cell EV.</strong> Fill it with hydrogen in 3 to 5 minutes. The fuel cell converts it into electricity on the go. The only emission is water vapour.</p><p>My thesis looks at combining both. A Fuel Cell–Battery Hybrid Vehicle uses a PEM fuel cell as the main power source, with a lithium-ion battery handling the peaks — sudden acceleration, regenerative braking, demand spikes.</p><p>The challenge is not building the system. It is managing both together intelligently. When does the fuel cell take over? When does the battery step in? How do you keep hydrogen consumption low while keeping the battery healthy?</p><p>That is what I am currently working on — simulating this in MATLAB over the WLTP driving cycle.</p>`
+    body: `<p>Most people think there is only one type of electric vehicle. There are actually two, and they work very differently.</p><p><strong>The first is a Battery EV.</strong> Plug in, charge, drive. Simple.</p><p><strong>The second is a Fuel Cell EV.</strong> Fill it with hydrogen in 3 to 5 minutes. The fuel cell converts it into electricity on the go. The only emission is water vapour.</p><p>My thesis looks at combining both. A Fuel Cell Battery Hybrid Vehicle uses a PEM fuel cell as the main power source, with a lithium-ion battery handling the peaks, sudden acceleration, regenerative braking, demand spikes.</p><p>The challenge is not building the system. It is managing both together intelligently. When does the fuel cell take over? When does the battery step in? How do you keep hydrogen consumption low while keeping the battery healthy? That is what I am simulating in MATLAB over the WLTP driving cycle.</p>`
   },
   {
-    title: "How a PEM Fuel Cell Actually Works — Inside the Stack",
+    title: "How a PEM Fuel Cell Actually Works Inside the Stack",
     cat: "Technical",
     date: "8 Jan 2025",
     read: "3 min read",
     desc: "Most people have heard of hydrogen fuel cells. Very few know what actually happens inside one.",
-    body: `<p>Most people have heard of hydrogen fuel cells. Very few know what actually happens inside one.</p><p>A PEM fuel cell has three core parts: an anode, a membrane, and a cathode.</p><p><strong>At the anode:</strong> Hydrogen enters and splits into protons and electrons.</p><p><strong>Through the membrane:</strong> The protons pass through. The electrons cannot — they are forced through an external circuit. That external circuit is your electricity.</p><p><strong>At the cathode:</strong> Everything reunites with oxygen from the air. The only output is water vapour.</p><p>No combustion. No CO₂. Just hydrogen in, electricity and water out.</p><p>Efficiency sits around 50 to 60% — significantly higher than a combustion engine at 20 to 35%. That is what makes it interesting. The physics are fundamentally cleaner.</p>`
+    body: `<p>Most people have heard of hydrogen fuel cells. Very few know what actually happens inside one.</p><p>A PEM fuel cell has three core parts: an anode, a membrane, and a cathode.</p><p><strong>At the anode:</strong> Hydrogen enters and splits into protons and electrons.</p><p><strong>Through the membrane:</strong> The protons pass through. The electrons cannot. They are forced through an external circuit. That external circuit is your electricity.</p><p><strong>At the cathode:</strong> Everything reunites with oxygen from the air. The only output is water vapour.</p><p>No combustion. No CO2. Just hydrogen in, electricity and water out.</p><p>Efficiency sits around 50 to 60 percent, significantly higher than a combustion engine at 20 to 35 percent. That is what makes it interesting. The physics are fundamentally cleaner.</p>`
   },
   {
     title: "Hydrogen Has Been Called the Fuel of the Future for Decades. Here Is Why It Is Still Not Mainstream.",
     cat: "Analysis",
     date: "9 Jan 2025",
     read: "3 min read",
-    desc: "Three reasons hydrogen has not broken through yet — infrastructure, cost, and awareness.",
-    body: `<p>Hydrogen has been called the fuel of the future for decades. So why is it still not mainstream?</p><p><strong>First: Infrastructure.</strong> There are fewer than 1,000 hydrogen filling stations worldwide. For comparison, there are over 170,000 public EV charging points in Europe alone. No stations means no adoption.</p><p><strong>Second: Cost.</strong> Green hydrogen currently costs around 4 to 6 euros per kilogram to produce. For it to compete commercially, that number needs to come down to around 1 to 2 euros. Electrolyser costs are dropping — but not fast enough yet.</p><p><strong>Third: Awareness.</strong> Most people cannot explain the difference between a battery EV and a fuel cell vehicle. Low awareness means low demand, which slows down investment.</p><p>Infrastructure is growing slowly across Europe and Japan. Production costs are falling year on year. These are not unsolvable problems. The technology is ready. The ecosystem is not yet.</p>`
+    desc: "Three reasons hydrogen has not broken through yet: infrastructure, cost, and awareness.",
+    body: `<p>Hydrogen has been called the fuel of the future for decades. So why is it still not mainstream? Three reasons.</p><p><strong>First: Infrastructure.</strong> There are fewer than 1,000 hydrogen filling stations worldwide. For comparison, there are over 170,000 public EV charging points in Europe alone. No stations means no adoption.</p><p><strong>Second: Cost.</strong> Green hydrogen currently costs around 4 to 6 euros per kilogram to produce. For it to compete commercially, that number needs to come down to around 1 to 2 euros. Electrolyser costs are dropping but not fast enough yet.</p><p><strong>Third: Awareness.</strong> Most people cannot explain the difference between a battery EV and a fuel cell vehicle. Low awareness means low demand, which slows down investment.</p><p>Infrastructure is growing slowly across Europe and Japan. Production costs are falling year on year. These are not unsolvable problems. The technology is ready. The ecosystem is not yet.</p>`
   },
   {
-    title: "What Is WLTP — And Why It Matters for Hydrogen Vehicles",
+    title: "What Is WLTP and Why It Matters for Hydrogen Vehicles",
     cat: "Technical",
     date: "10 Jan 2025",
     read: "3 min read",
     desc: "The Worldwide Harmonised Light Vehicle Test Procedure is the global standard for measuring vehicle efficiency.",
-    body: `<p>When testing how efficient a vehicle is, you need a standard driving pattern that everyone uses. That standard is the <strong>WLTP — Worldwide Harmonised Light Vehicle Test Procedure</strong>.</p><p>It covers four phases:</p><ul><li><strong>Low speed</strong> — city traffic</li><li><strong>Medium speed</strong> — suburban roads</li><li><strong>High speed</strong> — rural roads</li><li><strong>Extra high speed</strong> — motorway</li></ul><p>Combined, the cycle runs for about 30 minutes and covers roughly 23 km.</p><p>What makes it more realistic than older standards is the mix. Earlier standards like the NEDC used very simple, slow driving patterns that gave efficiency numbers far from real-world conditions. WLTP changed that.</p><p>For hydrogen vehicles, this matters more than most. Fuel cell efficiency changes depending on load. The WLTP captures the full range. That is why it is the standard evaluation cycle used in fuel cell vehicle research today.</p>`
+    body: `<p>When testing how efficient a vehicle is, you need a standard driving pattern that everyone uses. That standard is the WLTP, the Worldwide Harmonised Light Vehicle Test Procedure.</p><p>It covers four phases: low speed city traffic, medium speed suburban roads, high speed rural roads, and extra high speed motorway. Combined, the cycle runs for about 30 minutes and covers roughly 23 km.</p><p>What makes it more realistic than older standards is the mix. Earlier standards like the NEDC used very simple, slow driving patterns that gave efficiency numbers far from real-world conditions. WLTP changed that.</p><p>For hydrogen vehicles, this matters more than most. Fuel cell efficiency changes depending on load. Low speed driving demands different power levels than motorway cruising. The WLTP captures the full range. That is why it is the standard evaluation cycle used in fuel cell vehicle research today.</p>`
   },
   {
-    title: "Toyota Mirai vs Hyundai Nexo — Two Hydrogen Cars, Two Completely Different Approaches",
+    title: "Toyota Mirai vs Hyundai Nexo: Two Hydrogen Cars, Two Completely Different Approaches",
     cat: "Comparison",
     date: "11 Jan 2025",
     read: "4 min read",
-    desc: "The only two hydrogen fuel cell passenger vehicles in mass production today.",
-    body: `<p>Two hydrogen cars. Two completely different approaches.</p><p>The <strong>Toyota Mirai</strong> is a sedan. The <strong>Hyundai Nexo</strong> is an SUV. Same fuel — very different vehicles.</p><table><tr><th>Spec</th><th>Toyota Mirai</th><th>Hyundai Nexo</th></tr><tr><td>Power</td><td>182 hp</td><td>161 hp</td></tr><tr><td>Torque</td><td>300 Nm (RWD)</td><td>395 Nm (FWD)</td></tr><tr><td>Range</td><td>~647 km</td><td>~611 km</td></tr><tr><td>Refuel time</td><td>3–5 min</td><td>3–5 min</td></tr><tr><td>CO₂ emissions</td><td>Zero</td><td>Zero</td></tr></table><p>The Mirai is positioned as a premium sedan competing with vehicles like the BMW 5 Series. The Nexo is a practical family SUV.</p><p>Both produce zero CO₂ emissions. The only exhaust output is water vapour. These are the <strong>only two hydrogen fuel cell passenger vehicles currently in mass production worldwide.</strong> Infrastructure remains the biggest limiting factor for both.</p>`
+    desc: "The only two hydrogen fuel cell passenger vehicles in mass production today. Same fuel, very different vehicles.",
+    body: `<p>Two hydrogen cars. Two completely different approaches. The Toyota Mirai is a sedan. The Hyundai Nexo is an SUV. Same fuel, very different vehicles.</p><table><tr><th>Spec</th><th>Toyota Mirai</th><th>Hyundai Nexo</th></tr><tr><td>Power</td><td>182 hp</td><td>161 hp</td></tr><tr><td>Torque</td><td>300 Nm RWD</td><td>395 Nm FWD</td></tr><tr><td>Range</td><td>647 km</td><td>611 km</td></tr><tr><td>Refuel time</td><td>3 to 5 min</td><td>3 to 5 min</td></tr><tr><td>CO2</td><td>Zero</td><td>Zero</td></tr></table><p>The Mirai is positioned as a premium sedan competing with vehicles like the BMW 5 Series. The Nexo is a practical family SUV. Both produce zero CO2 emissions. The only exhaust output is water vapour.</p><p>These are the only two hydrogen fuel cell passenger vehicles currently in mass production worldwide. Infrastructure remains the biggest limiting factor for both. Range and refuel time are not the problem.</p>`
   },
   {
     title: "Energy Management Strategies in Fuel Cell Hybrid Vehicles",
@@ -493,55 +513,55 @@ const posts = [
     date: "12 Jan 2025",
     read: "4 min read",
     desc: "When a fuel cell and a battery work together, someone has to decide who does what.",
-    body: `<p>When a fuel cell and a battery work together in a vehicle, someone has to decide who does what. That decision is called an <strong>energy management strategy</strong> — and it matters more than most people think.</p><p><strong>1. Rule-Based Control</strong><br>Simple predefined rules decide when the fuel cell takes over and when the battery steps in. The fuel cell handles the base load; the battery covers the peaks. Easy to implement, computationally light, and reliable.</p><p><strong>2. Load-Following Control</strong><br>The fuel cell follows the power demand in real time. The battery keeps the State of Charge stable. More adaptive but the fuel cell experiences more frequent load changes — which over time can affect stack durability.</p><p><strong>3. Efficiency-Oriented Control</strong><br>The fuel cell is kept near its optimal efficiency point at all times. The battery absorbs all the fluctuations. This uses the least hydrogen but requires more complex control logic.</p><p>No single strategy is best in every situation. The right choice depends on the drive cycle, the vehicle class, and what you are optimising for: range, durability, or simplicity.</p>`
+    body: `<p>When a fuel cell and a battery work together in a vehicle, someone has to decide who does what. That decision is called an energy management strategy, and it matters more than most people think.</p><p><strong>Rule-Based Control:</strong> Simple predefined rules decide when the fuel cell takes over and when the battery steps in. The fuel cell handles the base load; the battery covers the peaks. Easy to implement, computationally light, and reliable. Not always the most efficient but practical for real-world deployment today.</p><p><strong>Load-Following Control:</strong> The fuel cell follows the power demand in real time. The battery keeps the State of Charge stable. More adaptive, but the fuel cell experiences more frequent load changes which over time can affect stack durability.</p><p><strong>Efficiency-Oriented Control:</strong> The fuel cell is kept near its optimal efficiency point at all times. The battery absorbs all the fluctuations. This uses the least hydrogen but requires more complex control logic.</p><p>No single strategy is best in every situation. The right choice depends on the drive cycle, the vehicle class, and what you are optimising for: range, durability, or simplicity.</p>`
   },
   {
-    title: "How Hydrogen Is Stored in a Car — The Engineering Behind 700 Bar Tanks",
+    title: "How Hydrogen Is Stored in a Car: The Engineering Behind 700 Bar Tanks",
     cat: "Technical",
     date: "13 Jan 2025",
     read: "4 min read",
     desc: "Storing enough hydrogen to power a car is one of the harder engineering problems in clean mobility.",
-    body: `<p>Hydrogen is the lightest element in the universe. Storing enough of it to power a car is one of the harder engineering problems in clean mobility.</p><p>Hydrogen gas is compressed to <strong>700 bar</strong> — roughly 10,000 psi. At that pressure, 7.5 kg fits into about 126 litres — enough for over 600 km.</p><p><strong>Type III</strong> — aluminium liner wrapped in carbon fibre. Better for 350 bar and larger vehicles.</p><p><strong>Type IV</strong> — high-density polymer liner wrapped in carbon fibre. Up to 70% lighter. This is the standard for passenger FCEVs like the Toyota Mirai and Hyundai Nexo.</p><p>Safety testing includes: burst pressure tested to over 1,575 bar, drop tested from 1.8 metres, fire tested, and pressure relief devices fitted.</p><p>The engineering challenge is not whether it can be done safely. It already is — in vehicles on the road today.</p>`
+    body: `<p>Hydrogen is the lightest element in the universe. Storing enough of it to power a car is one of the harder engineering problems in clean mobility.</p><p>Hydrogen gas is compressed to 700 bar, roughly 10,000 psi, and stored in a high-pressure tank onboard the vehicle. At that pressure, you can fit around 5.6 kg of hydrogen into a tank of about 126 litres. That is enough to power a passenger car for over 600 km.</p><p><strong>Type III</strong> uses an aluminium liner wrapped in carbon fibre. Strong and reliable, better suited for 350 bar applications and larger vehicles like buses and trucks.</p><p><strong>Type IV</strong> replaces the metal liner with a high-density polymer, still wrapped in carbon fibre. Up to 70 percent lighter than traditional metal tanks. This is the standard for passenger fuel cell vehicles like the Toyota Mirai and Hyundai Nexo.</p><p>Safety testing includes burst pressure tests to over 1,575 bar, drop tests from 1.8 metres, fire tests, and pressure relief devices. The engineering challenge is not whether it can be done safely. It already is, in vehicles on the road today.</p>`
   },
   {
-    title: "EU Hydrogen Targets vs Reality — An Honest Assessment",
+    title: "EU Hydrogen Targets vs Reality: An Honest Assessment",
     cat: "Policy",
     date: "14 Jan 2025",
     read: "4 min read",
-    desc: "In 2020 the EU set ambitious hydrogen targets for 2030. Four years later, the gap is significant.",
-    body: `<p>In 2020 the EU set some of the most ambitious hydrogen targets in the world. By 2030, the plan was to produce 10 million tonnes of green hydrogen domestically, install 40 GW of electrolyser capacity, and build 11,600 km of hydrogen pipelines.</p><p>Four years later, the gap is significant. Current green hydrogen production sits at around <strong>0.02 million tonnes per year</strong>. Of the 7.2 million tonnes consumed in Europe today, <strong>99.7% still comes from fossil fuels</strong>.</p><p>The challenges are real — green hydrogen is 3 to 4 times more expensive than grey, subsidy approvals take 12 to 24 months, and China leads global electrolyser manufacturing.</p><p>None of this means the strategy is wrong. It means execution has not caught up with ambition yet. The direction is right. The timeline was always going to be difficult.</p>`
+    desc: "In 2020 the EU set ambitious hydrogen targets for 2030. Four years later, the gap between ambition and reality is significant.",
+    body: `<p>In 2020 the EU set some of the most ambitious hydrogen targets in the world. By 2030, the plan was to produce 10 million tonnes of green hydrogen domestically, import another 10 million tonnes, install 40 GW of electrolyser capacity, and build 11,600 km of hydrogen pipelines.</p><p>Four years later, the gap is significant. Current green hydrogen production in the EU sits at around 0.02 million tonnes per year. Of the 7.2 million tonnes of hydrogen consumed in Europe today, 99.7 percent still comes from fossil fuels. According to the European Hydrogen Index 2025, 98 percent of European hydrogen projects are still at the concept or feasibility stage.</p><p>Green hydrogen is currently 3 to 4 times more expensive than grey hydrogen. Subsidy approval processes take 12 to 24 months. The pipeline network is still in early stages. China leads global electrolyser manufacturing capacity by a significant margin.</p><p>None of this means the strategy is wrong. It means execution has not caught up with ambition yet. The direction is right. The timeline was always going to be difficult.</p>`
   },
   {
-    title: "The Motor That Actually Moves a Hydrogen Car — Why PMSM Is the Industry Standard",
+    title: "The Motor That Actually Moves a Hydrogen Car: Why PMSM Is the Industry Standard",
     cat: "Technical",
     date: "15 Jan 2025",
     read: "4 min read",
     desc: "Most people focus on the fuel cell. But the motor is just as important.",
-    body: `<p>Most people focus on the fuel cell when talking about hydrogen vehicles. But there is another component just as important — the motor.</p><p>In FCEVs, that motor is almost always a <strong>PMSM — Permanent Magnet Synchronous Motor</strong>.</p><p>The drivetrain chain: Fuel cell generates DC electricity → DC-DC converter regulates voltage → Inverter converts DC to three-phase AC → PMSM converts AC to mechanical torque at the wheels.</p><p>No combustion. No gearbox. No exhaust.</p><p><strong>Why PMSM?</strong></p><ul><li><strong>Efficiency:</strong> 92 to 97% — better than induction motors at 85 to 92%</li><li><strong>Torque:</strong> Full torque from zero speed, no gearbox needed</li><li><strong>Durability:</strong> Brushless design, less wear</li><li><strong>Regen braking:</strong> Acts as generator during deceleration</li></ul><p>The Toyota Mirai uses a PMSM. The Hyundai Nexo uses a PMSM. It is the industry standard for a reason.</p>`
+    body: `<p>Most people focus on the fuel cell when talking about hydrogen vehicles. But there is another component just as important, the motor that actually moves the car.</p><p>In fuel cell electric vehicles, that motor is almost always a PMSM, a Permanent Magnet Synchronous Motor.</p><p>The drivetrain chain: the fuel cell generates DC electricity, a DC-DC converter regulates the voltage, an inverter converts that DC into three-phase AC, and the PMSM converts that AC into mechanical torque at the wheels. No combustion, no gearbox, no exhaust.</p><p><strong>Why PMSM?</strong> Efficiency of 92 to 97 percent across varying load conditions, better than induction motors at 85 to 92 percent. Full torque from zero speed with no gearbox needed. Brushless design means less wear and lower maintenance. During deceleration, the motor acts as a generator, recovering kinetic energy back into the battery.</p><p>The Toyota Mirai uses a PMSM. The Hyundai Nexo uses a PMSM. It is the industry standard for a reason.</p>`
   },
   {
-    title: "BEV vs FCEV — Complementary Technologies, Not Competing Ones",
+    title: "BEV vs FCEV: Complementary Technologies, Not Competing Ones",
     cat: "Analysis",
     date: "16 Jan 2025",
     read: "4 min read",
     desc: "Everyone picks a side. The honest answer is that comparing BEV and FCEV directly misses the point.",
-    body: `<p>BEV vs FCEV. Everyone picks a side. The honest answer is that comparing them directly misses the point.</p><p><strong>BEVs</strong> convert 70 to 90% of stored electricity into motion. Hard to beat on efficiency. Great for urban driving and short to medium distances.</p><p><strong>FCEVs</strong> operate at 25 to 35% well-to-wheel efficiency due to the energy cost of producing and compressing hydrogen. But they refuel in 3 to 5 minutes, offer 500 to 650 km range, and suit long-haul and high-payload applications where the physics favour hydrogen.</p><p>BEV and FCEV are not competing technologies. They are complementary solutions for different parts of the mobility system. The future of zero-emission transport likely needs both.</p>`
+    body: `<p>BEV vs FCEV. Everyone picks a side. The honest answer is that comparing them directly misses the point. They are built for different things.</p><p><strong>BEVs</strong> convert 70 to 90 percent of stored electricity directly into motion. That is hard to beat on efficiency. Charging infrastructure is widely available and costs are falling every year. For urban driving and short to medium distances, BEVs are the stronger choice today.</p><p><strong>FCEVs</strong> operate at 25 to 35 percent well-to-wheel efficiency because of the energy cost of producing, compressing, and storing hydrogen. That is a real limitation. But they refuel in 3 to 5 minutes, offer ranges of 500 to 650 km, and carry lighter powertrains at scale. For long-haul transport and high-payload applications, the physics start to favour hydrogen.</p><p>BEV and FCEV are not competing technologies. They are complementary solutions for different parts of the mobility system. The future of zero-emission transport likely needs both.</p>`
   },
   {
-    title: "State of Charge — Why SOC Is a Critical Control Parameter",
+    title: "State of Charge: Why SOC Is a Critical Control Parameter in Fuel Cell Hybrid Vehicles",
     cat: "Technical",
     date: "17 Jan 2025",
     read: "3 min read",
     desc: "SOC is the battery equivalent of a fuel gauge. In a fuel cell hybrid vehicle it becomes a critical control input.",
-    body: `<p><strong>SOC — State of Charge</strong> is the battery equivalent of a fuel gauge. 0 to 100%.</p><p>In a fuel cell hybrid vehicle it becomes a critical control parameter.</p><ul><li><strong>SOC below 20%</strong> → Fuel cell increases output to recharge battery</li><li><strong>SOC between 20–80%</strong> → Normal operation, load split between both</li><li><strong>SOC above 80%</strong> → Regenerative braking limited, nowhere to store energy</li></ul><p>Every energy management decision starts with reading the SOC.</p><p>It also affects battery lifetime. Lithium-ion batteries degrade faster when charged to 100% or discharged to 0% repeatedly. Keeping SOC between 20 and 80% significantly extends service life.</p><p>SOC management is not just monitoring. It is an active control input that shapes how the entire powertrain behaves.</p>`
+    body: `<p>Most people know what a fuel gauge is. SOC, State of Charge, is the battery version of that. It tells you how much energy is left in the battery as a percentage, from 0 to 100 percent.</p><p>In a regular battery EV that is straightforward. In a fuel cell hybrid vehicle it becomes a critical control parameter.</p><p>If SOC drops below 20 percent, the fuel cell increases its output to recharge the battery. If SOC is in the healthy range of 20 to 80 percent, the system operates normally and splits the load between both sources. If SOC goes above 80 percent, regenerative braking is limited because there is nowhere to store the recovered energy.</p><p>Every energy management decision the system makes starts with reading the SOC. It also directly affects battery lifetime. Lithium-ion batteries degrade faster when repeatedly charged to 100 percent or discharged to 0 percent. Keeping SOC between 20 and 80 percent during normal operation significantly extends battery service life.</p><p>SOC management is not just a monitoring function. It is an active control input that shapes how the entire powertrain behaves.</p>`
   },
   {
-    title: "Green, Blue, Grey — What the Colours of Hydrogen Actually Mean",
+    title: "Green, Blue, Grey: What the Colours of Hydrogen Actually Mean",
     cat: "Explainer",
     date: "18 Jan 2025",
     read: "4 min read",
-    desc: "Everyone talks about hydrogen colours. But what do they actually mean for emissions and cost?",
-    body: `<p>Everyone in the hydrogen space talks about colours. But what do they actually mean?</p><p><strong>Grey Hydrogen</strong> — 95% of global production. Natural gas via Steam Methane Reforming, no carbon capture. ~10 kg CO₂ per kg of hydrogen.</p><p><strong>Blue Hydrogen</strong> — Same SMR process but with Carbon Capture and Storage. Emissions drop 85–95%. Costs USD 1.5–3/kg today.</p><p><strong>Green Hydrogen</strong> — Renewable electricity splits water through electrolysis. Near-zero emissions. Currently USD 4–9/kg but falling fast.</p><p>Blue hydrogen makes sense as a transitional option — gas infrastructure already exists. But methane leakage from upstream supply chains is a concern that rarely gets enough attention.</p><p>The industry direction is clearly green. The debate is about timeline and investment priority — not destination.</p>`
+    desc: "Everyone in the hydrogen space talks about colours. But what do they actually mean for emissions and cost?",
+    body: `<p>Everyone in the hydrogen space talks about colours. Green, blue, grey. But what do they actually mean for emissions and cost?</p><p><strong>Grey hydrogen</strong> makes up about 95 percent of global production today. It comes from natural gas via Steam Methane Reforming with no carbon capture. Around 10 kg of CO2 per kilogram of hydrogen produced.</p><p><strong>Blue hydrogen</strong> uses the same SMR process but adds Carbon Capture and Storage. Emissions drop by 85 to 95 percent. It costs roughly USD 1.5 to 3 per kilogram today and is commercially proven.</p><p><strong>Green hydrogen</strong> uses renewable electricity to split water through electrolysis. Near-zero lifecycle emissions. Currently costs USD 4 to 9 per kilogram, but this is falling as electrolyser capacity scales globally.</p><p>Blue hydrogen makes sense as a transitional option. Gas infrastructure already exists and CCS works at scale. But methane leakage from upstream gas supply chains is a concern that rarely gets the attention it deserves in these comparisons. The industry direction is clearly green. The debate is mostly about timeline and investment priority, not destination.</p>`
   },
   {
     title: "What Studying Hydrogen Technology in Germany Actually Taught Me",
@@ -549,51 +569,50 @@ const posts = [
     date: "19 Jan 2025",
     read: "4 min read",
     desc: "I moved from Hyderabad to Rosenheim, Bavaria. I thought the biggest challenge would be the technical content. It was not.",
-    body: `<p>I moved from Hyderabad to Rosenheim, Bavaria, to do an M.Sc. in Hydrogen Technology. I thought the biggest challenge would be the technical content. It was not.</p><p><strong>The academic environment is genuinely rigorous.</strong> At TH Rosenheim you are expected to find the answer, form a view, and defend it. That was a bigger adjustment than I expected.</p><p><strong>Precision is not optional.</strong> Vague does not pass. That habit has changed how I approach everything.</p><p><strong>The language barrier is real.</strong> My German is at A2 level. Rosenheim is not an international city. You either adapt or you stay stuck. I am still adapting.</p><p><strong>Industry is closer than I expected.</strong> TH Rosenheim sits between Munich and Salzburg. The companies I want to work for are not far away.</p><p><strong>The research is applied.</strong> My thesis is on a real system — not a hypothetical. The degree is important. But the bigger education has been learning how to operate in an environment where you start at zero and figure it out.</p>`
+    body: `<p>I moved from Hyderabad to Rosenheim, Bavaria, to do an M.Sc. in Hydrogen Technology. Before I came, I thought the biggest challenge would be the technical content. It was not.</p><p><strong>The academic environment is genuinely rigorous.</strong> At TH Rosenheim, you are not guided step by step through every problem. You are expected to find the answer, form a view, and then defend it. That was a bigger adjustment than I expected coming from a B.Tech in India.</p><p><strong>Precision is not optional.</strong> In engineering work, in lab documentation, in written submissions, vague does not pass. That habit has changed how I approach everything.</p><p><strong>The language barrier is real.</strong> My German is at A2 level. Rosenheim is not an international city. Day-to-day life, administration, and a lot of professional communication happens in German. You either adapt or you stay stuck.</p><p><strong>Industry is closer than I expected.</strong> TH Rosenheim sits between Munich and Salzburg. The companies I want to work for are not far away. The gap between university and industry is much smaller here than I expected.</p><p>The degree is important. But the bigger education has been learning how to operate in an environment where you start at zero and figure it out.</p>`
   },
   {
-    title: "Before You Build a Fuel Cell Vehicle, You Simulate It — Here Is Why",
+    title: "Before You Build a Fuel Cell Vehicle, You Simulate It",
     cat: "Technical",
     date: "20 Jan 2025",
     read: "4 min read",
-    desc: "MATLAB and Simulink are the standard tools for vehicle energy simulation.",
-    body: `<p>Before you build a fuel cell vehicle, you simulate it.</p><p>A vehicle in motion is always balancing forces — rolling resistance, aerodynamic drag, grade resistance, and the force to accelerate the mass. Together these determine power demand at the wheels at every moment.</p><p>This is <strong>vehicle longitudinal dynamics</strong> — the mathematical foundation connecting road conditions, mass, and speed to power demand.</p><p>A simulation model lets you: test thousands of conditions over real driving cycles before any hardware exists, change a parameter and re-run in minutes, see how energy splits between fuel cell and battery at every point, and run sensitivity studies on slope, temperature, and mass.</p><p>Simulation does not replace physical testing. It reduces how much you need — by letting you fail cheaply in software first. That is the principle behind model-based engineering.</p>`
+    desc: "MATLAB and Simulink are the standard tools for vehicle energy simulation. Here is the engineering logic behind simulation-first development.",
+    body: `<p>Before you build a fuel cell vehicle, you simulate it. Here is why.</p><p>A vehicle in motion is always balancing forces. Rolling resistance from the tyres. Aerodynamic drag from the body shape. Grade resistance if the road is not flat. And the force needed to accelerate the mass. Together these determine how much power the drivetrain must deliver at every moment.</p><p>This is what vehicle longitudinal dynamics describes. It is the mathematical foundation that connects road conditions, vehicle mass, and speed to power demand at the wheels.</p><p>MATLAB and Simulink are the standard tools for this type of analysis in the automotive and energy systems industry. A simulation model lets you test thousands of operating conditions over real driving cycles before any physical hardware exists. You can change a parameter and re-run in minutes. You can see how energy is split between the fuel cell and the battery at every point in the cycle.</p><p>Simulation does not replace physical testing. It reduces how much physical testing you need by letting you fail cheaply in software first. That is the principle behind model-based engineering.</p>`
   },
   {
-    title: "Hydrogen for Trucks vs Passenger Cars — Not the Same Conversation",
+    title: "Hydrogen for Trucks vs Passenger Cars: Not the Same Conversation",
     cat: "Analysis",
     date: "21 Jan 2025",
     read: "4 min read",
-    desc: "Heavy trucks and passenger cars have different energy needs and usage patterns.",
-    body: `<p>Not all hydrogen vehicles are the same conversation.</p><p><strong>Long-haul trucks</strong> operate 10–20 hours a day, 500+ km routes. A battery large enough for a 30-tonne truck can weigh 2–4 tonnes — eating into payload. Hydrogen refuels in minutes like diesel. That matters enormously for commercial operators.</p><p><strong>Passenger cars</strong> average 40–60 km daily. BEVs handle that comfortably. The argument for hydrogen in passenger cars is weaker today — not because the technology fails, but because infrastructure is not there yet.</p><p>The commercial side is already moving. Hyundai's Xcient fuel cell truck has been operating commercially in Switzerland since 2020. Daimler Truck, Volvo, and MAN all have active programmes.</p><p>Hydrogen does not need to win everywhere to matter. It needs to win where batteries genuinely cannot. Heavy transport is that place.</p>`
+    desc: "Heavy trucks and passenger cars have different energy needs and usage patterns. The answer for one does not apply to the other.",
+    body: `<p>Not all hydrogen vehicles are the same conversation. When people debate whether hydrogen works for transport, they often mix up two very different use cases.</p><p><strong>Long-haul trucks</strong> operate 10 to 20 hours a day and cover routes of 500 km or more. At that scale, battery weight becomes a real problem. A battery pack large enough to power a 30-tonne truck over that distance can weigh 2 to 4 tonnes, eating directly into payload capacity. Hydrogen refuels in minutes, just like diesel. That matters enormously for commercial operators.</p><p><strong>Passenger cars</strong> are different. Average daily driving distance is 40 to 60 km. Battery Electric Vehicles handle that comfortably. The argument for hydrogen in private passenger cars is weaker today, not because the technology does not work, but because the infrastructure is not there yet to make it practical.</p><p>The commercial vehicle side is already moving. Hyundai's Xcient fuel cell truck has been operating commercially in Switzerland since 2020. Daimler Truck, Volvo, and MAN all have active fuel cell programmes.</p><p>Hydrogen does not need to win everywhere to matter. It needs to win where batteries genuinely cannot. Heavy transport is that place.</p>`
   },
   {
-    title: "Sensitivity Analysis in Vehicle Simulation — Why One Fixed Condition Is Never Enough",
+    title: "Sensitivity Analysis in Vehicle Simulation: Why One Fixed Condition Is Never Enough",
     cat: "Technical",
     date: "22 Jan 2025",
     read: "4 min read",
     desc: "A simulation model that only works under one fixed condition is not useful for real engineering.",
-    body: `<p>A simulation model that only works under one fixed condition is not useful for real engineering.</p><p>The method is called <strong>One-at-a-Time (OAT) analysis</strong> — change one input variable while holding everything else constant, observe how the output responds. Results show which parameters the model is most sensitive to.</p><p><strong>Road Slope</strong> — Steeper grades raise power demand at the wheels. In a fuel cell hybrid, that demand is shared between fuel cell and battery. If energy management logic is not robust, a sustained uphill stretch can deplete the battery faster than expected.</p><p><strong>Temperature</strong> — Affects multiple components simultaneously. Li-ion battery capacity drops at low temperatures. PEM fuel cell membrane conductivity is temperature-dependent. Cold start requires additional energy.</p><p>These two parameters are standard inclusions in any thorough vehicle simulation study.</p>`
+    body: `<p>A simulation model that only works under one fixed condition is not useful for real engineering.</p><p>When you build a vehicle energy simulation, you start with a baseline: flat road, standard temperature, nominal vehicle mass. That baseline tells you how the system behaves under ideal conditions. What it does not tell you is how much the output changes when those conditions shift.</p><p>That is what sensitivity analysis is for. The method used in vehicle simulation is called One-at-a-Time analysis. You change one input variable while holding everything else constant, then observe how the output responds. Repeat for each variable. The results show you which parameters the model is most sensitive to and where your design margins need to be larger.</p><p><strong>Road slope</strong> changes the force balance. Steeper grades increase resistance directly, which raises instantaneous power demand at the wheels. In a fuel cell hybrid vehicle, a sustained uphill stretch can deplete the battery faster than expected if the energy management logic is not robust.</p><p><strong>Temperature</strong> affects multiple components simultaneously. Lithium-ion battery capacity drops at low temperatures. PEM fuel cell membrane conductivity is temperature-dependent. Cold start conditions require additional energy. Testing across a temperature range reveals whether the system behaviour is consistent or whether cold weather introduces failure modes the baseline case misses entirely.</p>`
   },
   {
-    title: "Well-to-Wheel Analysis — The Only Fair Way to Compare Vehicle Powertrains",
+    title: "Well-to-Wheel Analysis: The Only Fair Way to Compare Vehicle Powertrains",
     cat: "Analysis",
     date: "23 Jan 2025",
     read: "4 min read",
     desc: "Comparing vehicles only at the tailpipe misses the full picture.",
-    body: `<p>Comparing vehicles only at the tailpipe is like judging a restaurant by the last five minutes of cooking.</p><p><strong>Well-to-Wheel (WtW)</strong> covers the full energy chain: Well-to-Tank (production, processing, delivery) + Tank-to-Wheel (conversion to motion) = the only fair comparison.</p><p><strong>WtW efficiency:</strong></p><ul><li>BEVs on clean grid: ~65–77%</li><li>FCEVs on green hydrogen: ~25–35%</li></ul><p>But a BEV on a coal-heavy grid looks very different on emissions. An FCEV on green hydrogen looks much better even with lower efficiency. The energy source changes the conclusion more than the ratio does.</p><p>Neither powertrain dominates on every metric. It depends on your grid, your hydrogen source, and what you are optimising for.</p>`
+    body: `<p>Comparing vehicles only at the tailpipe is like judging a restaurant by the last five minutes of cooking.</p><p>The energy a vehicle uses does not start at the fuel tank. It starts at the source: an oil well, a wind turbine, an electrolyser. Everything that happens between that point and the moment the wheels turn is part of the real efficiency picture. This is what Well-to-Wheel analysis covers.</p><p>The chain has three stages. Well-to-Tank covers production, processing, and delivery of the fuel to the vehicle. Tank-to-Wheel covers conversion of that stored energy into motion. Well-to-Wheel is the full chain combined. It is the only comparison that is actually fair.</p><p>On well-to-wheel efficiency, Battery Electric Vehicles come out significantly ahead when the grid is clean, roughly 65 to 77 percent of the original energy reaching the wheels. Fuel Cell Electric Vehicles running on green hydrogen sit at around 25 to 35 percent because electrolysis, compression, and fuel cell conversion all involve losses.</p><p>But a BEV running on a coal-heavy grid has a very different emissions profile than the number suggests. An FCEV running on green hydrogen starts to look much better on emissions, even with the lower efficiency figure. The source of the energy changes the conclusion more than the efficiency ratio does.</p>`
   },
   {
-    title: "Hydrogen Vehicles Are a Fraction of Global Car Sales — Here Is What That Gap Looks Like",
+    title: "Hydrogen Vehicles Are a Fraction of Global Car Sales. Here Is What That Gap Looks Like.",
     cat: "Analysis",
     date: "24 Jan 2025",
     read: "5 min read",
-    desc: "Fewer than 100,000 hydrogen vehicles on roads globally. Getting to scale requires five things simultaneously.",
-    body: `<p>There are fewer than <strong>100,000 hydrogen vehicles</strong> on roads globally. In 2023, over <strong>10 million BEVs</strong> were sold. The gap is real.</p><p>Getting to 1% of global vehicle sales requires five things at the same time:</p><ol><li><strong>Green hydrogen below USD 2/kg</strong> — currently USD 4–9/kg. Requires electrolyser manufacturing to scale significantly.</li><li><strong>Refuelling infrastructure ×10</strong> — ~1,000 stations today concentrated in Japan, South Korea, Germany, and California.</li><li><strong>More manufacturers committed to volume</strong> — today Toyota Mirai and Hyundai Nexo carry almost the entire passenger segment.</li><li><strong>Consistent long-term policy</strong> — incentives that change every election cycle cannot anchor infrastructure investment.</li><li><strong>Actually green hydrogen</strong> — scaling on grey hydrogen undermines the entire climate case.</li></ol><p>All five are interdependent. Each one is waiting for the others to move first. That is why progress is slower than the engineering alone would suggest.</p>`
+    desc: "Fewer than 100,000 hydrogen vehicles on roads globally. Getting to scale requires five things to happen at the same time.",
+    body: `<p>Hydrogen vehicles are a fraction of a percent of global new car sales today. There are fewer than 100,000 hydrogen vehicles on roads globally. In 2023 alone, over 10 million battery electric vehicles were sold. The hydrogen mobility market is real, but it is not yet at scale by any meaningful measure.</p><p>Getting to 1 percent of global vehicle sales requires five things to happen at the same time.</p><p><strong>Green hydrogen needs to get cheaper.</strong> The target most analysts point to is USD 2 per kilogram or below. Current green hydrogen costs are between USD 4 and 9 per kilogram depending on location and electrolyser scale.</p><p><strong>Refuelling infrastructure needs to expand by roughly 10 times.</strong> There are approximately 1,000 hydrogen stations worldwide today, concentrated in Japan, South Korea, Germany, and California.</p><p><strong>More vehicle manufacturers need to commit to volume production.</strong> Today, the Toyota Mirai and Hyundai Nexo carry almost the entire passenger car segment. That is not enough depth to drive market confidence.</p><p><strong>Policy frameworks need to be consistent and long-term.</strong> Incentives that change with every election cycle cannot anchor the investment decisions that infrastructure requires.</p><p><strong>The hydrogen being used needs to actually be green.</strong> Scaling hydrogen vehicles on grey hydrogen does not build a credible climate case and undermines the entire argument for the technology.</p><p>The underlying problem is that all five are interdependent. Each one is waiting for the others to move first. That is why progress is slower than the engineering alone would suggest.</p>`
   }
 ];
 
-// Render blog cards
 const grid = document.getElementById('blogGrid');
 posts.forEach((p,i) => {
   grid.innerHTML += `
@@ -609,26 +628,34 @@ posts.forEach((p,i) => {
     </div>`;
 });
 
-function openModal(i) {
-  const p = posts[i];
-  document.getElementById('modalCat').textContent = p.cat;
-  document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalMeta').textContent = `Kalluri Devi Narasimha Venu Madhav · ${p.date} · ${p.read}`;
-  document.getElementById('modalBody').innerHTML = p.body;
+function openModal(i){
+  const p=posts[i];
+  document.getElementById('modalCat').textContent=p.cat;
+  document.getElementById('modalTitle').textContent=p.title;
+  document.getElementById('modalMeta').textContent='Kalluri Devi Narasimha Venu Madhav · '+p.date+' · '+p.read;
+  document.getElementById('modalBody').innerHTML=p.body;
   document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeModalBtn() {
+function closeModalBtn(){
   document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
 
-function closeModal(e) {
-  if(e.target === document.getElementById('modalOverlay')) closeModalBtn();
+function closeModal(e){
+  if(e.target===document.getElementById('modalOverlay'))closeModalBtn();
 }
 
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalBtn(); });
+function notifyCareer(){
+  const email=document.getElementById('careerEmail').value;
+  if(email){
+    document.getElementById('careerMsg').style.display='block';
+    document.getElementById('careerEmail').value='';
+  }
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalBtn();});
 </script>
 </body>
 </html>
