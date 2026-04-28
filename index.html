@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HySPERA — Hydrogen Fuel Cell Electric Vehicle</title>
+<meta name="description" content="HySPERA is building India's first premium hydrogen fuel cell passenger car. Driven by Hydrogen. Defined by Innovation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=20260428">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260428">
+<link rel="shortcut icon" href="/favicon.ico?v=20260428">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260428">
+<meta name="apple-mobile-web-app-title" content="HySPERA">
+<link rel="manifest" href="/site.webmanifest?v=20260428">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060606;--bg2:#0A0A0A;--surface:#111111;--surface2:#161616;
+  --border:#1A1A1A;--border2:#242424;--border3:#303030;
+  --text:#EFEFEF;--text2:#777777;--text3:#444444;
+  --sky:#0EA5E9;--sky-dim:#0C8FCC;--sky-dark:#075985;
+  --sky-glow:rgba(14,165,233,0.10);
+  --chrome:linear-gradient(135deg,#B8B8B8 0%,#E8E8E8 40%,#C0C0C0 60%,#989898 100%);
+  --nav-h:72px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;cursor:none}
+
+#cur{position:fixed;width:6px;height:6px;background:var(--sky);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:screen}
+#cur2{position:fixed;width:28px;height:28px;border:1px solid rgba(14,165,233,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .22s,height .22s}
+body.hov #cur{width:14px;height:14px}
+body.hov #cur2{width:44px;height:44px;border-color:rgba(14,165,233,0.55)}
+@media(hover:none),(pointer:coarse){#cur,#cur2{display:none}body{cursor:auto}}
+
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 60px;z-index:100;transition:background .5s,border-color .5s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,6,6,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--border)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:32px;width:auto;display:block;opacity:.92;transition:opacity .2s;filter:brightness(1.1)}
+.nav-logo:hover img{opacity:1}
+.nav-logo-text{display:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:.04em}
+.nav-logo-text span{color:var(--sky)}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .25s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--sky);transition:width .25s}
+.nav-links a:hover{color:var(--text2)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{border:1px solid var(--border3)!important;color:var(--text2)!important;padding:9px 22px!important;letter-spacing:.14em!important;transition:all .25s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{border-color:var(--sky)!important;color:var(--sky)!important;background:var(--sky-glow)!important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.nav-hamburger span{display:block;width:20px;height:1px;background:var(--text3);transition:all .3s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);background:var(--text2)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--text2)}
+.nav-drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(6,6,6,0.98);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:20px 24px 28px;z-index:99;flex-direction:column}
+.nav-drawer.open{display:flex}
+.nav-drawer a{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);text-decoration:none;padding:15px 0;border-bottom:1px solid var(--border);transition:color .2s,padding-left .2s}
+.nav-drawer a:last-child{border-bottom:none}
+.nav-drawer a:hover{color:var(--sky);padding-left:6px}
+
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:var(--nav-h)}
+canvas#bg{position:absolute;inset:0;z-index:0;opacity:.7}
+.hero-grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(14,165,233,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,0.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 0%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 0%,transparent 100%)}
+.hero-glow-top{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(14,165,233,0.055) 0%,transparent 70%);pointer-events:none;z-index:0}
+.hero-inner{position:relative;z-index:1;text-align:center;padding:0 24px;max-width:1000px;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--sky);font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:52px;opacity:0;animation:fadeUp .8s ease forwards .1s}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--sky))}
+.hero-eyebrow::after{background:linear-gradient(90deg,var(--sky),transparent)}
+.hero-logo-wrap{margin-bottom:44px;opacity:0;animation:logoIn 1.6s cubic-bezier(.16,1,.3,1) forwards .3s}
+.hero-logo-wrap img{width:460px;max-width:82vw;filter:drop-shadow(0 0 80px rgba(14,165,233,0.07)) brightness(1.05)}
+.hero-tagline{font-size:14px;font-weight:300;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:60px;opacity:0;animation:fadeUp .8s ease forwards .85s}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s ease forwards 1.15s}
+.btn-p{background:var(--sky);color:#fff;padding:14px 40px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background .2s,box-shadow .3s,transform .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.btn-p:hover{background:var(--sky-dim);box-shadow:0 0 40px rgba(14,165,233,0.3);transform:translateY(-1px);color:#fff}
+.btn-s{background:transparent;color:var(--text2);padding:14px 40px;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border2);display:inline-block;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.btn-s:hover{border-color:var(--sky);color:var(--sky);transform:translateY(-1px)}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:fadeUp .6s ease forwards 1.8s}
+.hero-scroll span{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text3)}
+.hero-scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--text3),transparent);animation:scrollPulse 2.2s ease-in-out infinite}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes logoIn{from{opacity:0;transform:scale(.93) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:.2;transform:scaleY(.8)}50%{opacity:.7;transform:scaleY(1)}}
+
+.section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,var(--border) 20%,var(--border2) 50%,var(--border) 80%,transparent 100%)}
+
+#conviction{background:var(--bg2);padding:0}
+.conv-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.conv-item{padding:52px 40px;text-align:center;border-right:1px solid var(--border);position:relative;transition:background .3s;cursor:pointer}
+.conv-item:last-child{border-right:none}
+.conv-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--sky),transparent);transform:scaleX(0);transition:transform .4s ease}
+.conv-item:hover{background:rgba(14,165,233,0.03)}
+.conv-item:hover::before{transform:scaleX(1)}
+.conv-num{font-family:'Rajdhani',sans-serif;font-size:52px;font-weight:700;background:var(--chrome);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.conv-unit{font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+.conv-label{font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;margin-top:10px}
+
+.sec{padding:128px 60px}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-eyebrow{display:flex;align-items:center;gap:12px;font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--sky);margin-bottom:20px}
+.sec-eyebrow::before{content:'';width:20px;height:1px;background:var(--sky)}
+.sec-title{font-family:'Rajdhani',sans-serif;font-size:clamp(36px,4.5vw,64px);font-weight:700;color:var(--text);line-height:1.0;letter-spacing:.01em}
+.sec-sub{font-size:14px;color:var(--text2);font-weight:300;max-width:480px;line-height:1.9;margin-top:16px}
+.fade{opacity:0;transform:translateY(28px);transition:opacity .85s ease,transform .85s ease}
+.fade.vis{opacity:1;transform:translateY(0)}
+
+#technology{background:var(--bg)}
+.tech-pillars{margin-top:72px;border-bottom:1px solid var(--border)}
+a.pillar{color:inherit;text-decoration:none;display:grid}
+.pillar{display:grid;grid-template-columns:80px 260px 1fr 40px;align-items:center;gap:48px;padding:44px 0;border-top:1px solid var(--border);position:relative;cursor:pointer;transition:background .25s;text-decoration:none}
+.pillar::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--sky),transparent);transform:scaleY(0);transform-origin:center;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.pillar:hover{background:rgba(14,165,233,0.025)}
+.pillar:hover::after{transform:scaleY(1)}
+.pillar-num{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:.25em;color:var(--text3);text-align:center}
+.pillar-title{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.02em;line-height:1.2}
+.pillar-desc{font-size:13px;color:var(--text2);font-weight:300;line-height:1.9;min-width:0}
+.pillar-arrow{font-size:20px;color:var(--sky);text-align:right;transition:color .25s,transform .25s;opacity:.6}
+.pillar:hover .pillar-arrow{opacity:1;transform:translateX(6px)}
+
+#vehicle{background:var(--bg2)}
+.spec-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:72px;align-items:start}
+.spec-table{border-top:1px solid var(--border)}
+.spec-row{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);transition:background .2s}
+.spec-row:hover{background:rgba(255,255,255,0.015);margin:0 -12px;padding-left:12px;padding-right:12px}
+.spec-name{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text3)}
+.spec-val{font-size:13px;font-weight:500;color:var(--text);text-align:right}
+.spec-note{margin-top:28px;border-left:2px solid var(--sky);padding:14px 18px;background:rgba(14,165,233,0.04)}
+.spec-note p{font-size:12px;color:var(--text2);font-weight:300;line-height:1.8;font-style:italic}
+.spec-narrative p{font-size:14px;color:var(--text2);font-weight:300;line-height:1.95;margin-bottom:20px}
+.spec-highlights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:28px}
+.spec-highlight-box{background:var(--bg2);padding:20px;text-align:center}
+.spec-highlight-box .val{font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:700;color:var(--text);line-height:1}
+.spec-highlight-box .unit{font-size:9px;color:var(--sky);letter-spacing:.2em;text-transform:uppercase;margin-top:6px}
+
+#about{background:var(--bg);position:relative;overflow:hidden}
+.about-watermark{position:absolute;right:-60px;top:50%;transform:translateY(-50%);font-family:'Rajdhani',sans-serif;font-size:420px;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(14,165,233,0.04);pointer-events:none;user-select:none;line-height:1}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:72px;position:relative;z-index:1;align-items:start}
+.about-text p{font-size:14px;color:var(--text2);font-weight:300;line-height:1.95;margin-bottom:20px}
+.founding-note{font-size:12px;color:var(--text3);border-top:1px solid var(--border);padding-top:24px;margin-top:8px;font-style:italic;line-height:1.8}
+
+/* FOUNDER CARD - fixed */
+.founder-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;position:relative}
+.founder-img-wrap{position:relative;background:var(--surface2);overflow:hidden;aspect-ratio:4/5}
+.founder-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:contrast(1.05) brightness(0.95);transition:transform .6s ease,filter .4s ease}
+.founder-img:hover{transform:scale(1.03);filter:contrast(1.08) brightness(1.0)}
+.founder-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--surface2)}
+.founder-info{padding:28px 28px 24px;background:var(--surface);border-top:1px solid var(--border);position:relative}
+.founder-info::before{content:'';position:absolute;top:0;left:28px;right:28px;height:1px;background:linear-gradient(90deg,transparent,var(--sky),transparent);opacity:.4}
+.founder-name{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:600;color:var(--text);letter-spacing:.03em;line-height:1.2}
+.founder-role{font-size:9px;font-weight:700;color:var(--sky);letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+.founder-uni{font-size:12px;color:var(--text3);margin-top:8px;font-weight:300;line-height:1.5}
+.founder-li{display:inline-flex;align-items:center;gap:7px;margin-top:18px;color:var(--text2);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border2);padding:9px 18px;transition:all .25s}
+.founder-li:hover{border-color:var(--sky);color:var(--sky);background:var(--sky-glow)}
+
+#intelligence{background:var(--bg2)}
+.blog-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:20px}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.blog-card{background:var(--bg2);padding:40px;cursor:pointer;transition:background .25s;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:220px}
+.blog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--sky);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.blog-card:hover{background:var(--surface)}
+.blog-card:hover::before{transform:scaleX(1)}
+.blog-cat{font-size:9px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:16px}
+.blog-card h3{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:600;line-height:1.3;color:var(--text);letter-spacing:.01em;margin-bottom:12px;flex:1}
+.blog-card p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.8}
+.blog-read{display:flex;align-items:center;gap:6px;margin-top:24px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);transition:color .2s}
+.blog-card:hover .blog-read{color:var(--sky)}
+
+#careers{background:var(--bg);border-top:1px solid var(--border);padding:128px 60px;text-align:center;position:relative;overflow:hidden}
+.careers-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(14,165,233,0.04) 0%,transparent 65%);pointer-events:none}
+.careers-inner{position:relative;z-index:1;max-width:560px;margin:0 auto}
+.careers-badge{display:inline-block;border:1px solid var(--border2);color:var(--text3);padding:6px 20px;font-size:9px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-bottom:36px}
+.careers-inner h2{font-family:'Rajdhani',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:700;color:var(--text);line-height:1.0;margin-bottom:24px}
+.careers-inner p{font-size:14px;color:var(--text2);font-weight:300;line-height:1.9;margin-bottom:36px}
+.careers-quote{font-size:17px;font-weight:300;color:var(--text);font-style:italic;margin-bottom:40px;line-height:1.7}
+.careers-quote span{color:var(--sky)}
+.notify-form{display:flex;max-width:420px;margin:0 auto 14px}
+.notify-input{flex:1;background:var(--surface);border:1px solid var(--border2);border-right:none;padding:13px 18px;font-size:13px;color:var(--text);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;min-width:0}
+.notify-input::placeholder{color:var(--text3)}
+.notify-input:focus{border-color:var(--sky)}
+.notify-btn{background:var(--sky);color:#fff;border:none;padding:13px 24px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;white-space:nowrap;flex-shrink:0}
+.notify-btn:hover{background:var(--sky-dim)}
+.careers-note{font-size:11px;color:var(--text3);line-height:1.7}
+
+#contact{background:var(--bg2);border-top:1px solid var(--border);padding:128px 60px}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+.contact-left h2{font-family:'Rajdhani',sans-serif;font-size:clamp(32px,4vw,60px);font-weight:700;color:var(--text);letter-spacing:.01em;line-height:1.0;margin-bottom:28px}
+.contact-left p{font-size:14px;color:var(--text2);font-weight:300;line-height:1.9;margin-bottom:44px}
+.contact-direct{display:flex;flex-direction:column;gap:28px}
+.contact-label{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.contact-val{font-size:15px;font-weight:500;color:var(--text)}
+.contact-val a{color:var(--sky);text-decoration:none;transition:opacity .2s}
+.contact-val a:hover{opacity:.7}
+.contact-note{margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
+.contact-note p{font-size:12px;color:var(--text3);font-style:italic;line-height:1.8}
+.form-field{margin-bottom:28px}
+.form-label{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:10px}
+.form-input,.form-textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border2);padding:11px 0;font-size:14px;color:var(--text);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text3)}
+.form-input:focus,.form-textarea:focus{border-color:var(--sky)}
+.form-textarea{resize:none}
+.form-submit{width:100%;background:var(--sky);color:#fff;border:none;padding:16px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s,transform .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.form-submit:hover{background:var(--sky-dim);transform:translateY(-1px)}
+
+footer{background:#040404;border-top:1px solid var(--border);padding:72px 60px 40px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2.2fr 1fr 1fr;gap:80px;padding-bottom:52px;border-bottom:1px solid var(--border)}
+.footer-logo img{height:22px;opacity:.65;filter:brightness(1.1)}
+.footer-brand-text{font-size:12px;color:var(--text3);margin-top:18px;line-height:2;font-weight:300}
+.footer-col-title{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:22px}
+.footer-links{display:flex;flex-direction:column;gap:14px}
+.footer-links a{font-size:13px;color:var(--text3);text-decoration:none;transition:color .2s;font-weight:300}
+.footer-links a:hover{color:var(--text2)}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:11px;color:var(--text3);font-weight:300}
+
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;overflow-y:auto;padding:40px 20px;backdrop-filter:blur(12px)}
+.modal-ov.open{display:flex;align-items:flex-start;justify-content:center}
+.modal{background:var(--bg2);border:1px solid var(--border);max-width:680px;width:100%;padding:52px;position:relative;margin:auto}
+.modal-close{position:absolute;top:18px;right:22px;font-size:18px;cursor:pointer;color:var(--text3);background:none;border:none;line-height:1;transition:color .2s;font-family:'Inter',sans-serif}
+.modal-close:hover{color:var(--text)}
+.modal-cat{font-size:9px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:14px}
+.modal h2{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:600;line-height:1.3;margin-bottom:20px;color:var(--text)}
+.modal-meta{font-size:11px;color:var(--text3);margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);font-weight:300}
+.modal-body{font-size:14px;line-height:1.9;color:var(--text2)}
+.modal-body p{margin-bottom:14px}
+.modal-body strong{color:var(--text);font-weight:600}
+.modal-body ul,.modal-body ol{padding-left:20px;margin-bottom:14px}
+.modal-body li{margin-bottom:6px}
+.modal-body table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:13px}
+.modal-body th{background:var(--surface);padding:10px 14px;font-weight:600;text-align:left;border:1px solid var(--border);color:var(--text)}
+.modal-body td{padding:10px 14px;border:1px solid var(--border);color:var(--text2)}
+
+@media(max-width:1024px){
+  nav{padding:0 36px}
+  .sec{padding:96px 36px}
+  .conv-item{padding:40px 24px}
+  .pillar{grid-template-columns:56px 180px 1fr 32px;gap:28px}
+  .spec-layout{gap:48px}
+  .about-layout{gap:48px}
+  .contact-inner{gap:60px}
+  .footer-top{gap:48px}
+  footer{padding:56px 36px 36px}
+  #careers{padding:96px 36px}
+  #contact{padding:96px 36px}
+}
+
+@media(max-width:768px){
+  :root{--nav-h:60px}
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .hero-inner{padding:0 20px}
+  .hero-eyebrow{margin-bottom:32px;font-size:8px}
+  .hero-logo-wrap img{width:260px}
+  .hero-tagline{font-size:12px;margin-bottom:44px}
+  .hero-btns{gap:10px}
+  .btn-p,.btn-s{padding:12px 28px;font-size:9px}
+  .conv-grid{grid-template-columns:1fr 1fr}
+  .conv-item{border-right:none;border-bottom:1px solid var(--border);padding:36px 20px}
+  .conv-item:nth-child(odd){border-right:1px solid var(--border)}
+  .conv-item:nth-child(3),.conv-item:nth-child(4){border-bottom:none}
+  .conv-num{font-size:40px}
+  .sec{padding:72px 20px}
+  .sec-title{font-size:clamp(28px,7vw,48px)}
+  .pillar{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:28px 0}
+  .pillar-title{font-size:19px;width:100%}
+  .pillar-desc{width:100%;font-size:13px}
+  .pillar-arrow{display:none}
+  .spec-layout{grid-template-columns:1fr;gap:36px}
+  .spec-highlights{grid-template-columns:1fr 1fr}
+  .about-layout{grid-template-columns:1fr;gap:40px}
+  .about-watermark{display:none}
+  .blog-grid{grid-template-columns:1fr 1fr}
+  .blog-header{flex-direction:column;align-items:flex-start;margin-bottom:36px}
+  #careers{padding:72px 20px}
+  .notify-form{flex-direction:column;gap:0}
+  .notify-input{border-right:1px solid var(--border2);border-bottom:none;width:100%}
+  .notify-btn{width:100%;padding:13px}
+  #contact{padding:72px 20px}
+  .contact-inner{grid-template-columns:1fr;gap:48px}
+  footer{padding:48px 20px 28px}
+  .footer-top{grid-template-columns:1fr;gap:36px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+  .modal{padding:28px 18px}
+}
+
+@media(max-width:480px){
+  .hero-logo-wrap img{width:210px}
+  .hero-eyebrow{display:none}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-p,.btn-s{width:100%;max-width:260px;text-align:center}
+  .blog-grid{grid-template-columns:1fr}
+  .spec-highlights{grid-template-columns:1fr}
+  .conv-num{font-size:34px}
+  #careers{padding:56px 18px}
+  #contact{padding:56px 18px}
+  footer{padding:40px 18px 24px}
+  .modal{padding:22px 14px}
+  .modal h2{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<nav id="nav">
+  <a href="#home" class="nav-logo">
+    <img src="logo.png" alt="HySPERA" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'">
+    <span class="nav-logo-text">Hy<span>SPERA</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#vehicle">Vehicle</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="#technology" onclick="closeDrawer()">Technology</a>
+  <a href="#vehicle" onclick="closeDrawer()">Vehicle</a>
+  <a href="#about" onclick="closeDrawer()">About</a>
+  <a href="#intelligence" onclick="closeDrawer()">Intelligence</a>
+  <a href="#contact" onclick="closeDrawer()" style="color:var(--sky)">Contact</a>
+</div>
+
+<section id="home">
+  <canvas id="bg"></canvas>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-glow-top"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Hydrogen Fuel Cell Electric Vehicle</div>
+    <div class="hero-logo-wrap">
+      <img src="logo.png" alt="HySPERA" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div style="display:none"><div style="font-family:'Rajdhani',sans-serif;font-size:clamp(56px,11vw,110px);font-weight:700;color:#EFEFEF;letter-spacing:.04em;line-height:1">Hy<span style="color:#0EA5E9">SPERA</span></div></div>
+    </div>
+    <p class="hero-tagline">Driven by Hydrogen &nbsp;&bull;&nbsp; Defined by Innovation</p>
+    <div class="hero-btns">
+      <a href="#vehicle" class="btn-p">Explore the Vehicle</a>
+      <a href="#technology" class="btn-s">Our Technology</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-line"></div></div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="conviction">
+  <div class="conv-grid">
+    <div class="conv-item fade" onclick="document.getElementById('technology').scrollIntoView({behavior:'smooth'})" title="Learn about our hydrogen storage system">
+      <div class="conv-num">700</div><div class="conv-unit">Bar</div><div class="conv-label">Storage Pressure</div>
+    </div>
+    <div class="conv-item fade" style="transition-delay:.1s" onclick="document.getElementById('vehicle').scrollIntoView({behavior:'smooth'})" title="Zero tailpipe emissions">
+      <div class="conv-num">Zero</div><div class="conv-unit">CO&#8322;</div><div class="conv-label">Tailpipe Emissions</div>
+    </div>
+    <div class="conv-item fade" style="transition-delay:.2s" onclick="document.getElementById('vehicle').scrollIntoView({behavior:'smooth'})" title="600km target range">
+      <div class="conv-num">600+</div><div class="conv-unit">Km</div><div class="conv-label">Target Range</div>
+    </div>
+    <div class="conv-item fade" style="transition-delay:.3s" onclick="document.getElementById('vehicle').scrollIntoView({behavior:'smooth'})" title="Refuel in 3 minutes">
+      <div class="conv-num">3</div><div class="conv-unit">Min</div><div class="conv-label">Refuel Time</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="technology" class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fade">The Architecture</div>
+    <h2 class="sec-title fade" style="transition-delay:.1s">Three Systems.<br>One Conviction.</h2>
+    <p class="sec-sub fade" style="transition-delay:.2s">Every component chosen because it is right for the problem.</p>
+    <div class="tech-pillars">
+      <a class="pillar fade" style="transition-delay:.1s" href="#vehicle">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Type IV COPV Hydrogen Tank</div>
+        <div class="pillar-desc">Rated to 700 bar. Carbon fibre overwound over a high-density polymer liner. Significantly lighter than metal tank equivalents. Simulation-validated structural integrity under cyclic fill and thermal variation across operating conditions.</div>
+        <div class="pillar-arrow">&#8594;</div>
+      </a>
+      <a class="pillar fade" style="transition-delay:.2s" href="#vehicle">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">PEM Fuel Cell Powertrain</div>
+        <div class="pillar-desc">Proton exchange membrane technology. Hydrogen enters at the anode and splits into protons and electrons. Electrons generate electricity through an external circuit. The only output at the cathode is water vapour. No combustion at any stage.</div>
+        <div class="pillar-arrow">&#8594;</div>
+      </a>
+      <a class="pillar fade" style="transition-delay:.3s" href="#vehicle">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Intelligent Energy Management</div>
+        <div class="pillar-desc">Real-time power split between the fuel cell and a lithium-ion buffer battery. State of charge is maintained within a controlled operating window to protect battery longevity and ensure regenerative braking capacity is always available.</div>
+        <div class="pillar-arrow">&#8594;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="vehicle" class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fade">Powertrain and Performance</div>
+    <h2 class="sec-title fade" style="transition-delay:.1s">Engineered Without<br>Compromise.</h2>
+    <div class="spec-layout">
+      <div class="fade" style="transition-delay:.1s">
+        <div class="spec-table">
+          <div class="spec-row"><span class="spec-name">Propulsion</span><span class="spec-val">Fuel Cell + Buffer Battery</span></div>
+          <div class="spec-row"><span class="spec-name">Hydrogen Storage</span><span class="spec-val">Type IV COPV, 700 bar</span></div>
+          <div class="spec-row"><span class="spec-name">Target Range</span><span class="spec-val">600 km and above</span></div>
+          <div class="spec-row"><span class="spec-name">Drive Configuration</span><span class="spec-val">Rear-Wheel Drive</span></div>
+          <div class="spec-row"><span class="spec-name">Refuel Time</span><span class="spec-val">3 to 5 minutes</span></div>
+          <div class="spec-row"><span class="spec-name">Tailpipe Emissions</span><span class="spec-val">Zero CO&#8322;</span></div>
+          <div class="spec-row"><span class="spec-name">Evaluation Cycle</span><span class="spec-val">WLTP</span></div>
+          <div class="spec-row"><span class="spec-name">Drive Motor</span><span class="spec-val">PMSM</span></div>
+          <div class="spec-row"><span class="spec-name">Seating</span><span class="spec-val">5 passengers</span></div>
+        </div>
+        <div class="spec-highlights">
+          <div class="spec-highlight-box"><div class="val">110 kW</div><div class="unit">Fuel Cell Output</div></div>
+          <div class="spec-highlight-box"><div class="val">700 bar</div><div class="unit">H&#8322; Storage</div></div>
+          <div class="spec-highlight-box"><div class="val">300 Nm</div><div class="unit">Motor Torque</div></div>
+          <div class="spec-highlight-box"><div class="val">7.5 kg</div><div class="unit">H&#8322; Capacity</div></div>
+        </div>
+        <div class="spec-note"><p>Full performance specifications will be released at a later stage of development.</p></div>
+      </div>
+      <div class="spec-narrative fade" style="transition-delay:.2s">
+        <p>HySPERA's powertrain is built around a proton exchange membrane fuel cell delivering 110 kW continuous output, paired with a 2.3 kWh lithium-ion buffer battery. The battery handles transient load demands and recuperates braking energy while the fuel cell maintains steady-state output.</p>
+        <p>The hydrogen storage system uses a single Type IV carbon fibre overwound pressure vessel, rated to 700 bar, storing 7.5 kg of hydrogen in 150 litres. Simulation-validated for structural integrity across cyclic fill conditions and a wide thermal range.</p>
+        <p>A permanent magnet synchronous motor delivering 100 kW and 300 Nm of torque drives the rear wheels. Full torque from zero speed. No gearbox required.</p>
+        <p>Refuelled in 3 to 5 minutes. Target range of 600 km and above. Near-silent. Zero tailpipe emissions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="about" class="sec">
+  <div class="about-watermark" aria-hidden="true">H</div>
+  <div class="sec-inner">
+    <div class="about-layout">
+      <div class="about-text fade">
+        <div class="sec-eyebrow">About HySPERA</div>
+        <h2 class="sec-title" style="margin-top:16px;margin-bottom:32px">A Founder's<br>Conviction.</h2>
+        <p>HySPERA is building India's first premium hydrogen fuel cell passenger car. Founded by a researcher who believes hydrogen is not a distant promise. It is the right answer for long-distance mobility in a country that cannot afford range anxiety or overnight charging.</p>
+        <p>We are not a component company. We are not a concept studio. We are building the full vehicle. From tank to powertrain to cabin.</p>
+        <p>India's geography demands range. India's infrastructure cannot wait for overnight charging networks to cover 3.3 million square kilometres. Hydrogen, with its fast refuel and long range, is the answer that fits the problem.</p>
+        <p class="founding-note">Currently in founding stage. R&amp;D in Germany. Manufacturing target: India. Not seeking public investment at this time.</p>
+      </div>
+      <div class="founder-card fade" style="transition-delay:.2s">
+        <div class="founder-img-wrap">
+          <img src="founder.jpg" alt="Kalluri Devi Narasimha Venu Madhav" class="founder-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="founder-placeholder" style="display:none">
+            <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="24" r="14" stroke="#2A2A2A" stroke-width="1.5"/>
+              <path d="M8 56c0-13.3 10.7-24 24-24s24 10.7 24 24" stroke="#2A2A2A" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <div class="founder-info">
+          <div class="founder-name">Kalluri Devi Narasimha Venu Madhav</div>
+          <div class="founder-role">Founder &amp; Lead Engineer</div>
+          <div class="founder-uni">M.Sc. Hydrogen Technology<br>TH Rosenheim, Germany</div>
+          <a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank" class="founder-li">LinkedIn &nbsp;&#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="intelligence" class="sec">
+  <div class="sec-inner">
+    <div class="blog-header">
+      <div>
+        <div class="sec-eyebrow fade">Field Notes</div>
+        <h2 class="sec-title fade" style="transition-delay:.1s">19 Articles on<br>Hydrogen Mobility.</h2>
+      </div>
+      <p class="sec-sub fade" style="transition-delay:.2s;max-width:340px;margin-top:0">Written by Kalluri Devi Narasimha Venu Madhav covering PEM fuel cells, hydrogen storage, energy management, EU policy and drivetrain engineering.</p>
+    </div>
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="careers">
+  <div class="careers-glow"></div>
+  <div class="careers-inner fade">
+    <div class="careers-badge">Careers</div>
+    <h2>We Build the Team<br>When We Build the Car.</h2>
+    <p class="careers-quote">"<span>Not before.</span>"</p>
+    <p>HySPERA is in its founding stage. If you are a mechanical engineer, powertrain specialist, or hydrogen researcher who believes in what we are building, leave your details. You will be among the first to know when we are ready.</p>
+    <div class="notify-form" id="notifyWrap">
+      <input type="email" id="notifyEmail" class="notify-input" placeholder="your@email.com">
+      <button class="notify-btn" id="notifyBtn" onclick="submitNotify()">Notify Me</button>
+    </div>
+    <p class="careers-note" id="notifyNote">No spam. Just a message when we are ready to build the team.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left fade">
+      <h2>Let's Talk.</h2>
+      <p>HySPERA is in its founding stage. We are open to conversations with investors, research partners, and press.</p>
+      <div class="contact-direct">
+        <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:hyspera.official@gmail.com">hyspera.official@gmail.com</a></div></div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank">Kalluri Devi Narasimha Venu Madhav</a></div></div>
+        <div><div class="contact-label">Based In</div><div class="contact-val">Munich, Germany &amp; Hyderabad, India</div></div>
+      </div>
+      <div class="contact-note"><p>We are selective about who we speak with. If you are reaching out, we expect you already know why.</p></div>
+    </div>
+    <div class="fade" style="transition-delay:.2s">
+      <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+        <input type="hidden" name="access_key" value="97c19237-f1aa-487a-8fd4-79df18ffe9cb">
+        <input type="hidden" name="subject" value="New Contact from HySPERA Website">
+        <input type="hidden" name="redirect" value="false">
+        <div class="form-field"><label class="form-label">Your Name</label><input type="text" name="name" class="form-input" placeholder="Full name" required></div>
+        <div class="form-field"><label class="form-label">Email Address</label><input type="email" name="email" class="form-input" placeholder="your@email.com" required></div>
+        <div class="form-field"><label class="form-label">What Is This About</label><input type="text" name="subject_detail" class="form-input" placeholder="Investment, research, press, other"></div>
+        <div class="form-field"><label class="form-label">Message</label><textarea name="message" rows="5" class="form-textarea" placeholder="What is on your mind" required></textarea></div>
+        <div id="form-result" style="display:none;margin-bottom:16px;font-size:13px;padding:12px 16px;border-left:2px solid var(--sky);background:rgba(14,165,233,0.06);color:var(--text2)"></div>
+        <button type="submit" class="form-submit" id="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <img src="logo.png" alt="HySPERA" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span style="display:none;font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#666">Hy<span style="color:#0EA5E9">SPERA</span></span>
+        </div>
+        <p class="footer-brand-text">Driven by Hydrogen. Defined by Innovation.<br><br>Founded 2025<br>Munich, Germany &amp; Hyderabad, India</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <div class="footer-links">
+          <a href="#technology">Technology</a><a href="#vehicle">Vehicle</a>
+          <a href="#about">About</a><a href="#intelligence">Field Notes</a>
+          <a href="#careers">Careers</a><a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/kalluridevinarasimhavenumadhav" target="_blank">LinkedIn</a>
+          <a href="mailto:hyspera.official@gmail.com">hyspera.official@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>2025 HySPERA. All rights reserved.</p>
+      <p>Driven by Hydrogen. Defined by Innovation.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-ov" id="modalOv" onclick="closeMo(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeMoBtn()">&#215;</button>
+    <div class="modal-cat" id="mCat"></div>
+    <h2 id="mTitle"></h2>
+    <div class="modal-meta" id="mMeta"></div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,cx=0,cy=0;
+const isTouch=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches;
+if(!isTouch()){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+  setInterval(()=>{cx+=(mx-cx)*.11;cy+=(my-cy)*.11;cur2.style.left=cx+'px';cur2.style.top=cy+'px'},10);
+  document.querySelectorAll('a,button,.pillar,.blog-card,.conv-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+  });
+}
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
+const hbg=document.getElementById('hamburger'),drawer=document.getElementById('navDrawer');
+function closeDrawer(){drawer.classList.remove('open');hbg.classList.remove('open');document.body.style.overflow=''}
+hbg.addEventListener('click',()=>{const open=drawer.classList.toggle('open');hbg.classList.toggle('open',open);document.body.style.overflow=open?'hidden':''});
+const cv=document.getElementById('bg'),ct=cv.getContext('2d');
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}rsz();window.addEventListener('resize',rsz);
+const N=window.innerWidth<768?28:55;
+const pts=Array.from({length:N},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.2+.4,o:Math.random()*.22+.04}));
+function draw(){
+  ct.clearRect(0,0,cv.width,cv.height);
+  pts.forEach((p,i)=>{
+    ct.beginPath();ct.arc(p.x,p.y,p.r,0,Math.PI*2);ct.fillStyle=`rgba(14,165,233,${p.o})`;ct.fill();
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;
+    for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<120){ct.beginPath();ct.moveTo(p.x,p.y);ct.lineTo(q.x,q.y);ct.strokeStyle=`rgba(14,165,233,${.055*(1-d/120)})`;ct.lineWidth=.5;ct.stroke()}}
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+const posts=[
+  {title:"Why I Study Hydrogen and Why It Deserves More Attention",cat:"Story",desc:"1.5 years into an M.Sc. in Hydrogen Technology in Germany, deep into a thesis on fuel cell and battery hybrid vehicles.",body:`<p>1.5 years ago, I moved to Germany to study Hydrogen Technology. I have not shared much about this journey online, as I have focused on my work.</p><p>Now in my 4th semester and deep into my thesis, simulating a fuel cell and battery hybrid vehicle in MATLAB, I believe it is time to start sharing what I have been learning.</p><p>Hydrogen deserves more recognition in the clean mobility conversation. It is not just a fuel. It is an energy carrier. The more I study it, the more I believe it has a significant role in transport that many people may not fully realise.</p>`},
+  {title:"There Are Two Types of Electric Vehicle and They Work Very Differently",cat:"Explainer",desc:"Most people think there is only one kind of electric vehicle. There are actually two.",body:`<p>Most people think there is only one type of electric vehicle. There are actually two and they work very differently.</p><p><strong>Battery EV:</strong> Plug in, charge, drive.</p><p><strong>Fuel Cell EV:</strong> Fill it with hydrogen in 3 to 5 minutes. The fuel cell converts it into electricity on the go. The only emission is water vapour.</p><p>My thesis looks at combining both. The challenge is not building the system. It is managing both together intelligently.</p>`},
+  {title:"How a PEM Fuel Cell Actually Works",cat:"Technical",desc:"Most people have heard of hydrogen fuel cells. Very few know what actually happens inside one.",body:`<p>A PEM fuel cell has three core parts: an anode, a membrane, and a cathode.</p><p><strong>At the anode:</strong> Hydrogen enters and splits into protons and electrons.</p><p><strong>Through the membrane:</strong> Protons pass through. Electrons are forced through an external circuit. That circuit is your electricity.</p><p><strong>At the cathode:</strong> Everything reunites with oxygen. The only output is water vapour. No combustion. Efficiency around 50 to 60 per cent.</p>`},
+  {title:"Hydrogen Has Been Called the Fuel of the Future for Decades",cat:"Analysis",desc:"Three reasons hydrogen has not broken through yet and why none of them are unsolvable.",body:`<p><strong>First: Infrastructure.</strong> Fewer than 1,000 hydrogen filling stations worldwide.</p><p><strong>Second: Cost.</strong> Green hydrogen currently costs 4 to 6 euros per kilogram. Needs to reach 1 to 2 euros.</p><p><strong>Third: Awareness.</strong> Most people cannot explain the difference between a battery EV and a fuel cell vehicle.</p><p>The technology is ready. The ecosystem is not yet.</p>`},
+  {title:"What Is WLTP and Why It Matters for Hydrogen Vehicles",cat:"Technical",desc:"The Worldwide Harmonised Light Vehicle Test Procedure is the global standard for measuring vehicle efficiency.",body:`<p>WLTP covers four phases: low speed city traffic, medium speed suburban roads, high speed rural roads, and extra high speed motorway driving. About 30 minutes, roughly 23 km.</p><p>For hydrogen vehicles, this matters more than most. Fuel cell efficiency changes depending on load. The WLTP captures the full range.</p>`},
+  {title:"Toyota Mirai vs Hyundai Nexo",cat:"Comparison",desc:"The only two hydrogen fuel cell passenger vehicles in mass production today.",body:`<p>Two hydrogen cars. Two completely different approaches.</p><table><tr><th>Spec</th><th>Toyota Mirai</th><th>Hyundai Nexo</th></tr><tr><td>Power</td><td>182 hp</td><td>161 hp</td></tr><tr><td>Torque</td><td>300 Nm RWD</td><td>395 Nm FWD</td></tr><tr><td>Range</td><td>647 km approx</td><td>611 km approx</td></tr><tr><td>Refuel</td><td>3 to 5 min</td><td>3 to 5 min</td></tr><tr><td>CO2</td><td>Zero</td><td>Zero</td></tr></table>`},
+  {title:"Energy Management Strategies in Fuel Cell Hybrid Vehicles",cat:"Technical",desc:"When a fuel cell and a battery work together, someone has to decide who does what.",body:`<p><strong>Rule-Based Control:</strong> Simple predefined rules. Easy to implement, computationally light.</p><p><strong>Load-Following Control:</strong> The fuel cell follows power demand in real time.</p><p><strong>Efficiency-Oriented Control:</strong> The fuel cell is kept near its optimal efficiency point. Uses the least hydrogen but requires more complex control logic.</p>`},
+  {title:"How Hydrogen Is Stored in a Car",cat:"Technical",desc:"Storing enough hydrogen to power a car is one of the harder engineering problems in clean mobility.",body:`<p>Hydrogen gas is compressed to 700 bar. At that pressure, enough hydrogen fits into a tank that can power a passenger car for over 600 km.</p><p><strong>Type IV</strong> uses a high-density polymer liner wrapped in carbon fibre. Significantly lighter than metal alternatives. This is the standard for passenger fuel cell vehicles.</p>`},
+  {title:"EU Hydrogen Targets vs Reality",cat:"Policy",desc:"In 2020 the EU set ambitious hydrogen targets for 2030. The gap is significant.",body:`<p>By 2030: 10 million tonnes of green hydrogen, 40 GW of electrolyser capacity, 11,600 km of hydrogen pipelines.</p><p>Current green hydrogen production: around 0.02 million tonnes per year. Of the 7.2 million tonnes consumed in Europe, 99.7 per cent still comes from fossil fuels.</p><p>The direction is right. The timeline was always going to be difficult.</p>`},
+  {title:"The Motor That Actually Moves a Hydrogen Car",cat:"Technical",desc:"Most people focus on the fuel cell. The motor is just as important.",body:`<p>In fuel cell electric vehicles, the drive motor is almost always a PMSM, a Permanent Magnet Synchronous Motor.</p><p>Fuel cell generates DC. Converter regulates voltage. Inverter converts to three-phase AC. PMSM converts that into torque at the wheels.</p><p>Efficiency of 92 to 97 per cent. Full torque from zero speed. Acts as a generator during deceleration.</p>`},
+  {title:"BEV vs FCEV: Complementary Technologies, Not Competing Ones",cat:"Analysis",desc:"The honest answer is that comparing them directly misses the point.",body:`<p>BEVs convert 70 to 90 per cent of stored electricity into motion. Great for urban driving.</p><p>FCEVs refuel in 3 to 5 minutes, offer 500 to 650 km range, and carry lighter powertrains at scale. For long-haul transport, the physics start to favour hydrogen.</p><p>The future of zero-emission transport needs both.</p>`},
+  {title:"State of Charge: Why SOC Is a Critical Control Parameter",cat:"Technical",desc:"In a fuel cell hybrid vehicle SOC becomes a critical control input.",body:`<p>SOC, State of Charge, tells you how much energy is left in the battery as a percentage.</p><p>If SOC drops below 20 per cent, the fuel cell increases output to recharge. If SOC goes above 80 per cent, regenerative braking is limited.</p><p>Keeping SOC between 20 and 80 per cent significantly extends battery service life.</p>`},
+  {title:"Green, Blue, Grey: What the Colours of Hydrogen Actually Mean",cat:"Explainer",desc:"What do they actually mean for emissions and cost?",body:`<p><strong>Grey hydrogen:</strong> 95 per cent of global production. Around 10 kg of CO2 per kilogram produced.</p><p><strong>Blue hydrogen:</strong> Adds Carbon Capture and Storage. Emissions drop 85 to 95 per cent.</p><p><strong>Green hydrogen:</strong> Renewable electricity splits water through electrolysis. Near zero lifecycle emissions.</p><p>The industry direction is clearly green. The debate is about timeline, not destination.</p>`},
+  {title:"What Studying Hydrogen Technology in Germany Actually Taught Me",cat:"Story",desc:"I moved from Hyderabad to Rosenheim, Bavaria.",body:`<p>I moved from Hyderabad to Rosenheim to do an M.Sc. in Hydrogen Technology.</p><p>At TH Rosenheim, you are expected to find the answer, form a view, and defend it. Precision is not optional. Vague does not pass.</p><p>TH Rosenheim sits between Munich and Salzburg. The gap between university and industry is much smaller here than I expected.</p>`},
+  {title:"Before You Build a Fuel Cell Vehicle, You Simulate It",cat:"Technical",desc:"MATLAB and Simulink are the standard tools for vehicle energy simulation.",body:`<p>A vehicle in motion is always balancing forces. Rolling resistance. Aerodynamic drag. Grade resistance. Acceleration mass. Together these determine how much power the drivetrain must deliver at every moment.</p><p>Simulation does not replace physical testing. It reduces how much physical testing you need by letting you fail cheaply in software first.</p>`},
+  {title:"Hydrogen for Trucks vs Passenger Cars",cat:"Analysis",desc:"Heavy trucks and passenger cars have different energy needs and cost equations.",body:`<p>A long-haul truck operates 10 to 20 hours a day. A battery pack large enough to power a 30-tonne truck can weigh 2 to 4 tonnes by itself. Hydrogen refuels in minutes, just like diesel.</p><p>Passenger cars average 40 to 60 km daily. BEVs handle that comfortably. Hydrogen needs to win where batteries genuinely cannot.</p>`},
+  {title:"Sensitivity Analysis in Vehicle Simulation",cat:"Technical",desc:"A simulation model that only works under one fixed condition is not useful.",body:`<p>Sensitivity analysis tells you how much output changes when inputs shift. The method: One-at-a-Time analysis. Change one input variable, hold everything else constant, observe the output.</p><p>Road slope changes the force balance. Temperature affects battery capacity, fuel cell membrane conductivity, and cold start energy demand simultaneously.</p>`},
+  {title:"Well-to-Wheel Analysis: The Only Fair Way to Compare Vehicle Powertrains",cat:"Analysis",desc:"Comparing vehicles only at the tailpipe misses the full picture.",body:`<p>Well-to-Tank covers production, processing, and delivery. Tank-to-Wheel covers conversion into motion. Well-to-Wheel is the only fair comparison.</p><p>The source of the energy changes the conclusion more than the efficiency ratio does.</p>`},
+  {title:"Hydrogen Vehicles Are a Fraction of Global Car Sales",cat:"Analysis",desc:"Getting to scale requires five things to happen simultaneously.",body:`<p>Fewer than 100,000 hydrogen vehicles on roads globally. In 2023, over 10 million BEVs were sold.</p><p>Getting to 1 per cent of global vehicle sales requires five things at once: green hydrogen below 2 USD per kg, infrastructure expanded 10 times, more manufacturers, consistent policy, and hydrogen that is actually green. All five are interdependent.</p>`}
+];
+const grid=document.getElementById('blogGrid');
+posts.forEach((p,i)=>{
+  const el=document.createElement('div');
+  el.className='blog-card fade';
+  el.style.transitionDelay=`${(i%3)*.08}s`;
+  el.innerHTML=`<div class="blog-cat">${p.cat}</div><h3>${p.title}</h3><p>${p.desc}</p><div class="blog-read">Read Article &nbsp;&#8594;</div>`;
+  el.addEventListener('click',()=>openM(i));
+  grid.appendChild(el);io.observe(el);
+});
+function openM(i){
+  const p=posts[i];
+  document.getElementById('mCat').textContent=p.cat;
+  document.getElementById('mTitle').textContent=p.title;
+  document.getElementById('mMeta').textContent='Kalluri Devi Narasimha Venu Madhav';
+  document.getElementById('mBody').innerHTML=p.body;
+  document.getElementById('modalOv').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeMoBtn(){document.getElementById('modalOv').classList.remove('open');document.body.style.overflow=''}
+function closeMo(e){if(e.target===document.getElementById('modalOv'))closeMoBtn()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMoBtn()});
+
+// Web3Forms contact handler
+const contactForm=document.getElementById('contactForm');
+if(contactForm){
+  contactForm.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=document.getElementById('submit-btn');
+    const result=document.getElementById('form-result');
+    btn.textContent='Sending...';btn.style.opacity='0.7';btn.disabled=true;
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});
+      const data=await res.json();
+      result.style.display='block';
+      if(data.success){
+        result.style.borderColor='var(--sky)';
+        result.textContent='Message received. We will be in touch.';
+        contactForm.reset();
+      } else {
+        result.style.borderColor='#ef4444';
+        result.textContent='Something went wrong. Please email us at hyspera.official@gmail.com';
+      }
+    } catch(err){
+      result.style.display='block';
+      result.style.borderColor='#ef4444';
+      result.textContent='Something went wrong. Please email us at hyspera.official@gmail.com';
+    }
+    btn.textContent='Send Message';btn.style.opacity='1';btn.disabled=false;
+  });
+// Notify Me handler
+async function submitNotify(){
+  const email=document.getElementById('notifyEmail').value.trim();
+  const btn=document.getElementById('notifyBtn');
+  const note=document.getElementById('notifyNote');
+  if(!email||!email.includes('@')){
+    note.style.color='#ef4444';
+    note.textContent='Please enter a valid email address.';
+    return;
+  }
+  btn.textContent='Sending...';btn.disabled=true;btn.style.opacity='0.7';
+  const fd=new FormData();
+  fd.append('access_key','97c19237-f1aa-487a-8fd4-79df18ffe9cb');
+  fd.append('subject','HySPERA Careers Notification Request');
+  fd.append('email',email);
+  fd.append('message','Careers notification request from: '+email);
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById('notifyWrap').style.display='none';
+      note.style.color='var(--sky)';
+      note.textContent='Noted. You will hear from us when we are ready.';
+    } else {
+      note.style.color='#ef4444';
+      note.textContent='Something went wrong. Email us at hyspera.official@gmail.com';
+      btn.textContent='Notify Me';btn.disabled=false;btn.style.opacity='1';
+    }
+  } catch(err){
+    note.style.color='#ef4444';
+    note.textContent='Something went wrong. Email us at hyspera.official@gmail.com';
+    btn.textContent='Notify Me';btn.disabled=false;btn.style.opacity='1';
+  }
+}
+</script>
+</body>
+</html>
