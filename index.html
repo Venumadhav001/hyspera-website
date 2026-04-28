@@ -86,10 +86,10 @@ canvas#bg{position:absolute;inset:0;z-index:0;opacity:.7}
 
 #conviction{background:var(--bg2);padding:0}
 .conv-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
-.conv-item{padding:52px 40px;text-align:center;border-right:1px solid var(--border);position:relative;transition:background .3s}
+.conv-item{padding:52px 40px;text-align:center;border-right:1px solid var(--border);position:relative;transition:background .3s;cursor:pointer}
 .conv-item:last-child{border-right:none}
 .conv-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--sky),transparent);transform:scaleX(0);transition:transform .4s ease}
-.conv-item:hover{background:rgba(14,165,233,0.02)}
+.conv-item:hover{background:rgba(14,165,233,0.03)}
 .conv-item:hover::before{transform:scaleX(1)}
 .conv-num{font-family:'Rajdhani',sans-serif;font-size:52px;font-weight:700;background:var(--chrome);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
 .conv-unit{font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
@@ -106,15 +106,16 @@ canvas#bg{position:absolute;inset:0;z-index:0;opacity:.7}
 
 #technology{background:var(--bg)}
 .tech-pillars{margin-top:72px;border-bottom:1px solid var(--border)}
-.pillar{display:grid;grid-template-columns:80px 260px 1fr 40px;align-items:center;gap:48px;padding:44px 0;border-top:1px solid var(--border);position:relative;cursor:default;transition:background .25s}
+a.pillar{color:inherit;text-decoration:none;display:grid}
+.pillar{display:grid;grid-template-columns:80px 260px 1fr 40px;align-items:center;gap:48px;padding:44px 0;border-top:1px solid var(--border);position:relative;cursor:pointer;transition:background .25s;text-decoration:none}
 .pillar::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--sky),transparent);transform:scaleY(0);transform-origin:center;transition:transform .35s cubic-bezier(.16,1,.3,1)}
-.pillar:hover{background:rgba(14,165,233,0.018)}
+.pillar:hover{background:rgba(14,165,233,0.025)}
 .pillar:hover::after{transform:scaleY(1)}
 .pillar-num{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:.25em;color:var(--text3);text-align:center}
 .pillar-title{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.02em;line-height:1.2}
 .pillar-desc{font-size:13px;color:var(--text2);font-weight:300;line-height:1.9;min-width:0}
-.pillar-arrow{font-size:18px;color:var(--text3);text-align:right;transition:color .25s,transform .25s}
-.pillar:hover .pillar-arrow{color:var(--sky);transform:translateX(4px)}
+.pillar-arrow{font-size:20px;color:var(--sky);text-align:right;transition:color .25s,transform .25s;opacity:.6}
+.pillar:hover .pillar-arrow{opacity:1;transform:translateX(6px)}
 
 #vehicle{background:var(--bg2)}
 .spec-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:72px;align-items:start}
@@ -154,14 +155,14 @@ canvas#bg{position:absolute;inset:0;z-index:0;opacity:.7}
 #intelligence{background:var(--bg2)}
 .blog-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:20px}
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-.blog-card{background:var(--bg2);padding:32px;cursor:pointer;transition:background .25s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.blog-card{background:var(--bg2);padding:40px;cursor:pointer;transition:background .25s;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:220px}
 .blog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--sky);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
 .blog-card:hover{background:var(--surface)}
 .blog-card:hover::before{transform:scaleX(1)}
-.blog-cat{font-size:8px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:14px}
-.blog-card h3{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:600;line-height:1.35;color:var(--text);letter-spacing:.01em;margin-bottom:10px;flex:1}
-.blog-card p{font-size:12px;color:var(--text2);font-weight:300;line-height:1.75}
-.blog-read{display:flex;align-items:center;gap:6px;margin-top:20px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);transition:color .2s}
+.blog-cat{font-size:9px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:16px}
+.blog-card h3{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:600;line-height:1.3;color:var(--text);letter-spacing:.01em;margin-bottom:12px;flex:1}
+.blog-card p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.8}
+.blog-read{display:flex;align-items:center;gap:6px;margin-top:24px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);transition:color .2s}
 .blog-card:hover .blog-read{color:var(--sky)}
 
 #careers{background:var(--bg);border-top:1px solid var(--border);padding:128px 60px;text-align:center;position:relative;overflow:hidden}
@@ -351,10 +352,18 @@ footer{background:#040404;border-top:1px solid var(--border);padding:72px 60px 4
 
 <section id="conviction">
   <div class="conv-grid">
-    <div class="conv-item fade"><div class="conv-num">700</div><div class="conv-unit">Bar</div><div class="conv-label">Storage Pressure</div></div>
-    <div class="conv-item fade" style="transition-delay:.1s"><div class="conv-num">Zero</div><div class="conv-unit">CO&#8322;</div><div class="conv-label">Tailpipe Emissions</div></div>
-    <div class="conv-item fade" style="transition-delay:.2s"><div class="conv-num">600+</div><div class="conv-unit">Km</div><div class="conv-label">Target Range</div></div>
-    <div class="conv-item fade" style="transition-delay:.3s"><div class="conv-num">3</div><div class="conv-unit">Min</div><div class="conv-label">Refuel Time</div></div>
+    <div class="conv-item fade" onclick="document.getElementById('technology').scrollIntoView({behavior:'smooth'})" title="Learn about our hydrogen storage system">
+      <div class="conv-num">700</div><div class="conv-unit">Bar</div><div class="conv-label">Storage Pressure</div>
+    </div>
+    <div class="conv-item fade" style="transition-delay:.1s" onclick="document.getElementById('vehicle').scrollIntoView({behavior:'smooth'})" title="Zero tailpipe emissions">
+      <div class="conv-num">Zero</div><div class="conv-unit">CO&#8322;</div><div class="conv-label">Tailpipe Emissions</div>
+    </div>
+    <div class="conv-item fade" style="transition-delay:.2s" onclick="document.getElementById('vehicle').scrollIntoView({behavior:'smooth'})" title="600km target range">
+      <div class="conv-num">600+</div><div class="conv-unit">Km</div><div class="conv-label">Target Range</div>
+    </div>
+    <div class="conv-item fade" style="transition-delay:.3s" onclick="document.getElementById('vehicle').scrollIntoView({behavior:'smooth'})" title="Refuel in 3 minutes">
+      <div class="conv-num">3</div><div class="conv-unit">Min</div><div class="conv-label">Refuel Time</div>
+    </div>
   </div>
 </section>
 
@@ -366,24 +375,24 @@ footer{background:#040404;border-top:1px solid var(--border);padding:72px 60px 4
     <h2 class="sec-title fade" style="transition-delay:.1s">Three Systems.<br>One Conviction.</h2>
     <p class="sec-sub fade" style="transition-delay:.2s">Every component chosen because it is right for the problem.</p>
     <div class="tech-pillars">
-      <div class="pillar fade" style="transition-delay:.1s">
+      <a class="pillar fade" style="transition-delay:.1s" href="#vehicle">
         <div class="pillar-num">01</div>
         <div class="pillar-title">Type IV COPV Hydrogen Tank</div>
         <div class="pillar-desc">Rated to 700 bar. Carbon fibre overwound over a high-density polymer liner. Significantly lighter than metal tank equivalents. Simulation-validated structural integrity under cyclic fill and thermal variation across operating conditions.</div>
         <div class="pillar-arrow">&#8594;</div>
-      </div>
-      <div class="pillar fade" style="transition-delay:.2s">
+      </a>
+      <a class="pillar fade" style="transition-delay:.2s" href="#vehicle">
         <div class="pillar-num">02</div>
         <div class="pillar-title">PEM Fuel Cell Powertrain</div>
         <div class="pillar-desc">Proton exchange membrane technology. Hydrogen enters at the anode and splits into protons and electrons. Electrons generate electricity through an external circuit. The only output at the cathode is water vapour. No combustion at any stage.</div>
         <div class="pillar-arrow">&#8594;</div>
-      </div>
-      <div class="pillar fade" style="transition-delay:.3s">
+      </a>
+      <a class="pillar fade" style="transition-delay:.3s" href="#vehicle">
         <div class="pillar-num">03</div>
         <div class="pillar-title">Intelligent Energy Management</div>
         <div class="pillar-desc">Real-time power split between the fuel cell and a lithium-ion buffer battery. State of charge is maintained within a controlled operating window to protect battery longevity and ensure regenerative braking capacity is always available.</div>
         <div class="pillar-arrow">&#8594;</div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -485,11 +494,11 @@ footer{background:#040404;border-top:1px solid var(--border);padding:72px 60px 4
     <h2>We Build the Team<br>When We Build the Car.</h2>
     <p class="careers-quote">"<span>Not before.</span>"</p>
     <p>HySPERA is in its founding stage. If you are a mechanical engineer, powertrain specialist, or hydrogen researcher who believes in what we are building, leave your details. You will be among the first to know when we are ready.</p>
-    <div class="notify-form">
-      <input type="email" class="notify-input" placeholder="your@email.com">
-      <button class="notify-btn">Notify Me</button>
+    <div class="notify-form" id="notifyWrap">
+      <input type="email" id="notifyEmail" class="notify-input" placeholder="your@email.com">
+      <button class="notify-btn" id="notifyBtn" onclick="submitNotify()">Notify Me</button>
     </div>
-    <p class="careers-note">No spam. Just a message when we are ready to build the team.</p>
+    <p class="careers-note" id="notifyNote">No spam. Just a message when we are ready to build the team.</p>
   </div>
 </section>
 
@@ -669,6 +678,39 @@ if(contactForm){
     }
     btn.textContent='Send Message';btn.style.opacity='1';btn.disabled=false;
   });
+// Notify Me handler
+async function submitNotify(){
+  const email=document.getElementById('notifyEmail').value.trim();
+  const btn=document.getElementById('notifyBtn');
+  const note=document.getElementById('notifyNote');
+  if(!email||!email.includes('@')){
+    note.style.color='#ef4444';
+    note.textContent='Please enter a valid email address.';
+    return;
+  }
+  btn.textContent='Sending...';btn.disabled=true;btn.style.opacity='0.7';
+  const fd=new FormData();
+  fd.append('access_key','97c19237-f1aa-487a-8fd4-79df18ffe9cb');
+  fd.append('subject','HySPERA Careers Notification Request');
+  fd.append('email',email);
+  fd.append('message','Careers notification request from: '+email);
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById('notifyWrap').style.display='none';
+      note.style.color='var(--sky)';
+      note.textContent='Noted. You will hear from us when we are ready.';
+    } else {
+      note.style.color='#ef4444';
+      note.textContent='Something went wrong. Email us at hyspera.official@gmail.com';
+      btn.textContent='Notify Me';btn.disabled=false;btn.style.opacity='1';
+    }
+  } catch(err){
+    note.style.color='#ef4444';
+    note.textContent='Something went wrong. Email us at hyspera.official@gmail.com';
+    btn.textContent='Notify Me';btn.disabled=false;btn.style.opacity='1';
+  }
 }
 </script>
 </body>
