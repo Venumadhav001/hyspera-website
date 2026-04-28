@@ -508,11 +508,17 @@ footer{background:#040404;border-top:1px solid var(--border);padding:72px 60px 4
       <div class="contact-note"><p>We are selective about who we speak with. If you are reaching out, we expect you already know why.</p></div>
     </div>
     <div class="fade" style="transition-delay:.2s">
-      <div class="form-field"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Full name"></div>
-      <div class="form-field"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
-      <div class="form-field"><label class="form-label">What Is This About</label><input type="text" class="form-input" placeholder="Investment, research, press, other"></div>
-      <div class="form-field"><label class="form-label">Message</label><textarea rows="5" class="form-textarea" placeholder="What is on your mind"></textarea></div>
-      <button class="form-submit">Send Message</button>
+      <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+        <input type="hidden" name="access_key" value="97c19237-f1aa-487a-8fd4-79df18ffe9cb">
+        <input type="hidden" name="subject" value="New Contact from HySPERA Website">
+        <input type="hidden" name="redirect" value="false">
+        <div class="form-field"><label class="form-label">Your Name</label><input type="text" name="name" class="form-input" placeholder="Full name" required></div>
+        <div class="form-field"><label class="form-label">Email Address</label><input type="email" name="email" class="form-input" placeholder="your@email.com" required></div>
+        <div class="form-field"><label class="form-label">What Is This About</label><input type="text" name="subject_detail" class="form-input" placeholder="Investment, research, press, other"></div>
+        <div class="form-field"><label class="form-label">Message</label><textarea name="message" rows="5" class="form-textarea" placeholder="What is on your mind" required></textarea></div>
+        <div id="form-result" style="display:none;margin-bottom:16px;font-size:13px;padding:12px 16px;border-left:2px solid var(--sky);background:rgba(14,165,233,0.06);color:var(--text2)"></div>
+        <button type="submit" class="form-submit" id="submit-btn">Send Message</button>
+      </form>
     </div>
   </div>
 </section>
@@ -635,6 +641,35 @@ function openM(i){
 function closeMoBtn(){document.getElementById('modalOv').classList.remove('open');document.body.style.overflow=''}
 function closeMo(e){if(e.target===document.getElementById('modalOv'))closeMoBtn()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMoBtn()});
+
+// Web3Forms contact handler
+const contactForm=document.getElementById('contactForm');
+if(contactForm){
+  contactForm.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=document.getElementById('submit-btn');
+    const result=document.getElementById('form-result');
+    btn.textContent='Sending...';btn.style.opacity='0.7';btn.disabled=true;
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});
+      const data=await res.json();
+      result.style.display='block';
+      if(data.success){
+        result.style.borderColor='var(--sky)';
+        result.textContent='Message received. We will be in touch.';
+        contactForm.reset();
+      } else {
+        result.style.borderColor='#ef4444';
+        result.textContent='Something went wrong. Please email us at hyspera.official@gmail.com';
+      }
+    } catch(err){
+      result.style.display='block';
+      result.style.borderColor='#ef4444';
+      result.textContent='Something went wrong. Please email us at hyspera.official@gmail.com';
+    }
+    btn.textContent='Send Message';btn.style.opacity='1';btn.disabled=false;
+  });
+}
 </script>
 </body>
 </html>
