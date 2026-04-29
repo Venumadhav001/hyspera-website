@@ -262,10 +262,10 @@ footer{background:#040404;border-top:1px solid var(--border);padding:72px 60px 4
   .conv-num{font-size:40px}
   .sec{padding:72px 20px}
   .sec-title{font-size:clamp(28px,7vw,48px)}
-  .pillar{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:28px 0}
-  .pillar-title{font-size:19px;width:100%}
-  .pillar-desc{width:100%;font-size:13px}
-  .pillar-arrow{display:none}
+  .pillar{display:grid;grid-template-columns:40px 1fr;grid-template-rows:auto auto;column-gap:14px;row-gap:12px;padding:28px 0;align-items:start}
+  .pillar-num{grid-column:1;grid-row:1;padding-top:3px}
+  .pillar-title{grid-column:2;grid-row:1;font-size:19px}
+  .pillar-desc{grid-column:1/-1;grid-row:2;font-size:13px;padding-top:4px}
   .spec-layout{grid-template-columns:1fr;gap:36px}
   .spec-highlights{grid-template-columns:1fr 1fr}
   .about-layout{grid-template-columns:1fr;gap:40px}
